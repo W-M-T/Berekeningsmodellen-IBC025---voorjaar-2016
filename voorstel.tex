@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[dutch]{babel}
+
+\title{Smurf}
+\author{Evi Sijben, Ward Theunisse en Camil Staps}
+
+\begin{document}
+
+\maketitle
+
+In ons project willen we de semantiek van
+Smurf\footnote{\url{http://esolangs.org/wiki/Smurf}}
+defini\"eren en bestuderen.
+
+Smurf, een esoterische taal, is een kleinere versie van Muriel. Het enige
+native data type is de string. Er is zowel een stack als een variable store.
+Er zijn standaardoperaties (concatenatie, head, tail, etc.) die op de stack
+werken. De variable store wordt aangepast door eerst een naam en een waarde op
+de stack te zetten en dan `put' uit te voeren. De store kan uitgelezen worden
+door de naam van de variabele op de stack te zetten en `get' uit te voeren.
+Ten slotte is er een functie `execute' om een string op de stack als
+Smurf-programma uit te voeren. De volledige stack en variable store wordt dan 
+gewist, waarna het nieuwe programma wordt uitgevoerd. Het op de stack zetten
+van een nieuw Smurf-programma en dat uitvoeren is de enige mogelijkheid tot
+recursie of iteratie.
+
+In het bijzonder zijn we benieuwd wat voor aanpassingen we moeten doen aan de
+semantiek om stackgeheugen en het `execute'-commando te modelleren.
+
+Er is een aantal dingen onduidelijk in de specificatie, zowel op syntactisch
+als op semantisch niveau. Bijvoorbeeld is het ongedefinieerd wat er gebeurt
+wanneer het programma dat middels `execute' wordt uitgevoerd termineert:
+termineert het ouderprogramma dan ook, of gaat de uitvoering hiervan door op
+het punt na `execute'? In eerste instantie zullen we hiervoor een geannoteerde
+specificatie\footnote{\url{http://safalra.com/programming/esoteric-languages/smurf/specification}},
+waarin al een aantal onduidelijkheden zijn uitgelicht en suggesties voor
+verdere specificatie zijn gegeven, gebruiken. Deze vrije definities geven
+ook de mogelijkheid om ons project later te verbreden, door bijvoorbeeld de
+invloed van een andere interpretatie op de semantiek te bekijken.
+
+\end{document}
+
