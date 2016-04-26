@@ -1,0 +1,24 @@
+% vim: set spelllang=nl:
+\subsection{Syntax}
+\label{sec:def:syn}
+
+We definiëren de volgende syntax:
+
+\setlength{\grammarindent}{5em}
+\begin{grammar}
+	<Pgm> ::= <Stm><Pgm> | $\lambda$
+
+	<Stm> ::= `Push' <String>
+		\alt `Cat' | `Head' | `Tail' | `Quotify'
+		\alt `Put' | `Get'
+		\alt `Input' | `Output'
+		\alt `Exec'
+
+	<String> ::= <Char><String> | $\lambda$
+\end{grammar}
+
+Een karakter, $\SynChar$, is een symbool uit de ASCII tabel. 
+
+Programma's zijn lijsten van statements. Compositie van statements is
+impliciet.
+

@@ -1,0 +1,50 @@
+% General
+\def\isdef{\stackrel{\text{def}}{=}}
+
+% Types
+\def\Pgm{\mathit{Pgm}}
+\def\Stm{\mathit{Stm}}
+\def\Input{\mathit{Input}}
+\def\Output{\mathit{Output}}
+\def\State{\mathit{State}}
+\def\String{\mathit{String}}
+\def\Char{\mathit{Char}}
+
+% Stacks
+\def\Stack#1{\mathbf{Stack}\left[\mathit{#1}\right]}
+\def\pushop{\mathit{push}}
+\def\popop{\mathit{pop}}
+\def\push#1#2{\pushop\left(#1, #2\right)}
+\def\pop#1{\popop\left(#1\right)}
+
+% Syntax
+\def\SynPgm{\langle\Pgm\rangle}
+\def\SynStm{\langle\Stm\rangle}
+\def\SynString{\langle\String\rangle}
+\def\SynChar{\langle\Char\rangle}
+
+% Statements
+\let\statement\texttt
+\def\StmPush{\statement{Push}}
+\def\StmCat{\statement{Cat}}
+\def\StmHead{\statement{Head}}
+\def\StmTail{\statement{Tail}}
+\def\StmQuotify{\statement{Quotify}}
+\def\StmPut{\statement{Put}}
+\def\StmGet{\statement{Get}}
+\def\StmInput{\statement{Input}}
+\def\StmOutput{\statement{Output}}
+\def\StmExec{\statement{Exec}}
+
+% Transitions
+\def\trans#1#2#3#4#5#6{\left\langle#1,#2,#3\right\rangle\to\left(#4,#5,#6\right)}
+
+% Common names
+\def\stk{\mathit{stk}}
+\def\str{\mathit{str}}
+\def\i{\mathit{i}}
+\def\o{\mathit{o}}
+\def\pgm{\mathit{pgm}}
+\def\stm{\mathit{stm}}
+\def\st{\mathit{st}}
+

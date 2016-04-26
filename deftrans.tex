@@ -1,0 +1,21 @@
+% vim: set spelllang=nl:
+\subsection{Transities}
+\label{sec:def:trans}
+
+Bij het definiëren van de natuurlijke semantiek van Smurf zullen we de
+verzameling van transities als een relatie $\to$ tussen
+$\Pgm\times\Input\times\State$ en $\Input\times\Output\times\State$ beschouwen.
+Dit schrijven we als
+$$\trans{\pgm}{\i}{\st}{\i}{\o}{\st}$$
+en lezen we als
+\begin{quote}
+	``het programma $\pgm$ zal in toestand $\st$ gegeven input $\i$ leiden tot
+	toestand $\st$ met output $\o$ waarbij de input $\i$ niet geconsumeerd is.''
+\end{quote}
+
+We hebben het hele programma $\Pgm$ nodig voor de pijl, omdat één commando
+($\StmExec$) eventuele verdere statements `weggooit'. %todo ander woord
+Verder gebruiken we $\Input$ voor $\StmInput$ en hebben we natuurlijk de
+$\State$ nodig voor ieder statement: ieder statement verandert de stack, en
+sommige statements veranderen bovendien de variable store.
+

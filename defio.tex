@@ -1,0 +1,31 @@
+% vim: set spelllang=nl:
+\subsection{Input en output}
+\label{sec:def:io}
+
+Allereerst definiëren we het type $\Stack{a}$, omdat stacks veel voorkomen in
+Smurf. Een $\Stack{a}$ (lees: een stack van elementen van type $a$) is een
+simpel datatype met de volgende syntax:
+
+\begin{grammar}
+	<Stack[a]> ::= [<a>:<Stack[a]>] | `Nil'
+	%todo formatting
+\end{grammar}
+
+Op een stack zijn twee instructies gedefinieerd:
+\begin{gather*}
+	\pushop : \Stack{a} \times a \to \Stack{a} \\
+	\push{s}{e} \isdef [e:s] \\[1em]
+	\popop : \Stack{a} \to a \times \Stack{a} \\
+	\pop{[e:s]} \isdef (e,s) \\
+\end{gather*}
+
+\medskip
+We zullen de input en output beide als $\Stack{\String}$ modelleren. In feite
+zal zelfs blijken dat we op $\Input$ de operatie $\pushop$ niet nodig hebben,
+en op $\Output$ de operatie $\popop$ niet zullen gebruiken. Informeel
+beschouwen we $\Input$ als een `bron' van $\String$s en $\Output$ als een `put'
+van $\String$s. Formeel:
+\begin{align*}
+	\Input &\isdef \Stack{\String} \\ \Output &\isdef \Stack{\String}
+\end{align*}
+

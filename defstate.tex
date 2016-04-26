@@ -1,0 +1,10 @@
+% vim: set spelllang=nl:
+\subsection{Toestanden}
+\label{sec:def:state}
+
+Een state $s\in\State$ van Smurf bevat zowel een stack als een variable store.
+Hieruit volgt de voor de hand liggende definitie voor $\State$
+$$\State \isdef \Stack{\String} \times (\String \to \String)$$
+waarbij we $s=(\stk,\str)\in\State$ lezen als de toestand $s$ met stack $\stk$
+en variable store $\str$.
+
