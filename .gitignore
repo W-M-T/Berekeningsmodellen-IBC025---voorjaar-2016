@@ -4,6 +4,7 @@
 *.idx
 *.fdb_latexmk
 *.fls
+*.fmt
 *.log
 *.toc
 *.ist
