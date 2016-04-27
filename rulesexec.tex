@@ -38,7 +38,7 @@ $$
 		\begin{cases}
 			\lambda                   & \text{als $s=\lambda$}\\
 			\parsepgm{s'}             & \text{als $s=c~s'$ met $c$ whitespace}\\
-			\parsestr{s'}             & \text{als $s=\texttt{"}~s'$} \\
+			\parsestr{s'}             & \text{als $s=\texttt{\char`\"}~s'$} \\
 			\StmCat:\parsepgm{s'}     & \text{als $s=\texttt{+}~s'$} \\
 			\StmHead:\parsepgm{s'}    & \text{als $s=\texttt{h}~s'$} \\
 			\StmTail:\parsepgm{s'}    & \text{als $s=\texttt{t}~s'$} \\
@@ -58,11 +58,11 @@ Dit is in overeenkomst met de specificatie, maar op zich niet nodig.
 $$
 	\parsestr s =
 		\begin{cases}
-			\lambda:\parsepgm{s'} & \text{als $s=\texttt{"}~s'$} \\
-			k~\parsestr{s'} & \text{als $s=\texttt{\textbackslash}~k~s'$ met
+			\lambda:\parsepgm{s'} & \text{als $s=\texttt{\char`\"}~s'$} \\
+			\texttt{\textbackslash}~k~\parsestr{s'} & \text{als $s=\texttt{\textbackslash}~k~s'$ met
 				$k \in\Char$} \\
 			c~\parsestr{s'} & \text{als $s=c~s'$ met $c
-				\in\Char\setminus\{\texttt{"}\}$}\\
+				\in\Char\setminus\{\texttt{\char`\",\textbackslash}\}$}\\
 		\end{cases}
 $$
 
