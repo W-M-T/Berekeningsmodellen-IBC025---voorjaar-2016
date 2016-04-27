@@ -1,9 +1,30 @@
 % vim: set spelllang=nl:
 \subsection{\texttt{Put}}
 
+\begin{quote}
+	p - Pops a variable name from the stack, pops a value from the stack, and
+	assigns that value to the variable name.
+\end{quote}
+
+We halen twee strings van de stack en gebruiken $\putop$ om een nieuwe variable
+store te krijgen. Hiermee wordt de rest van het programma uitgevoerd. Als er
+minder dan twee elementen op de stack staan kan deze regel niet worden
+toegepast, aangezien $\popop$ een partiële functie is.
+
 $$
 \begin{prooftree}
-	hallo
+	\trans
+		{\pgm}{\ip}{(\stk'', \put\var\val\str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmPut:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+	\using{\rputns}
+	\qquad
+	\text{met\enspace
+		\parbox{36mm}{$(\var,\stk') = \pop{\stk}$,\\$(\val,\stk'') = \pop{\stk'}$.}
+	}
 \end{prooftree}
 $$
 

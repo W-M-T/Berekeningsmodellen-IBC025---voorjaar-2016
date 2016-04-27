@@ -1,19 +1,27 @@
 % vim: set spelllang=nl:
 \subsection{\texttt{Get}}
 
-$\StmGet$ neemt het bovenste element van de stack en gebruikt dit als
-variabelenaam om in de variable store te zoeken.
+\begin{quote}
+	g - Pops a variable name from the stack, and pushes the value of the
+	variable.
+\end{quote}
+
+De regel voor dit statement spreekt voor zich. In het geval dat $\stk$ leeg is,
+is $\pop\stk$ niet gedefinieerd en kunnen we de regel dus niet toepassen. Omdat
+$\StmGet$ geen IO gebruikt kunnen we $\ip$, $\ip'$ en $\op$ direct doorgeven.
 
 $$
 \begin{prooftree}
 	\trans
-		{\pgm}{\ip}{([\str~\var:\stk], \str)}
+		{\pgm}{\ip}{(\push{\str~\var}{\stk}, \str)}
 		{\ip'}{\op}{\st}
 	\justifies
 	\trans
-		{\StmGet:\pgm}{\ip}{([\var:\stk],\str)}
+		{\StmGet:\pgm}{\ip}{(\stk,\str)}
 		{\ip'}{\op}{\st}
 	\using{\rgetns}
+	\qquad
+	\text{met $(\var,\stk') = \pop{\stk}$.}
 \end{prooftree}
 $$
 

@@ -15,9 +15,11 @@ Op een stack zijn twee instructies gedefinieerd:
 \begin{gather*}
 	\pushop : a \times \Stack{a} \to \Stack{a} \\
 	\push{e}{s} \isdef [e:s] \\[1em]
-	\popop : \Stack{a} \to a \times \Stack{a} \\
+	\popop : \Stack{a} \hookrightarrow a \times \Stack{a} \\
 	\pop{[e:s]} \isdef (e,s) \\
 \end{gather*}
+
+$\popop$ is een partiële functie omdat $\pop\Nil$ niet gedefinieerd is.
 
 \medskip
 We zullen de input en output beide als $\Stack{\String}$ modelleren. In feite

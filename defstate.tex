@@ -16,3 +16,16 @@ $\lambda$ in overeenstemming met de documentatie \cite{safalra}:
 	variable values are initially set to the empty string.
 \end{quote}
 
+Om de waarde van een key $k$ uit store $\str$ te halen gebruiken we simpelweg
+$\str~k$. Vervolgens definiëren we $\putop:\SynString \times \SynString \times
+(\String\to\String) \to (\String\to\String)$ die gegeven een variabelenaam, een
+waarde en een oude store een nieuwe store oplevert:
+
+$$
+	\put{\var}{\val}{\str} k =
+		\begin{cases}
+			\val   & \text{als $k=\var$} \\
+			\str~k & \text{als $k\ne\var$}
+		\end{cases}
+$$
+
