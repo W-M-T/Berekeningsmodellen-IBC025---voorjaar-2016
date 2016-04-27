@@ -7,12 +7,12 @@ variabelenaam om in de variable store te zoeken.
 $$
 \begin{prooftree}
 	\trans
-		{\pgm}{\i}{([\str~\var:\stk], \str)}
-		{\i'}{\o}{\st}
+		{\pgm}{\ip}{([\str~\var:\stk], \str)}
+		{\ip'}{\op}{\st}
 	\justifies
 	\trans
-		{\StmGet:\pgm}{\i}{([\var:\stk],\str)}
-		{\i'}{\o}{\st}
+		{\StmGet:\pgm}{\ip}{([\var:\stk],\str)}
+		{\ip'}{\op}{\st}
 	\using{\rgetns}
 \end{prooftree}
 $$
