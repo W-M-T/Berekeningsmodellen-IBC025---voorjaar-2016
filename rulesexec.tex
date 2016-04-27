@@ -1,0 +1,59 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Exec}}
+
+\begin{quote}
+	x - Executes the string at the top of the stack as a Smurf program. The stack and variable store are erased.
+\end{quote}
+
+We halen een strings van de stack en gebruiken $\parsepgmop$ om dit in een programma om te zetten. Dit wordt het nieuwe programma om uitgevoerd te worden. Als de $\stk$ leeg is is deze regel niet toepasbaar, omdat $\pop\stk$ dan niet gedefinieerd is. Ook is deze regel niet toepasbaar als de gepopte string zelf geen geldig Smurf-programma is, omdat $\parsepgmop$ dan niet gedefinieerd is.
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm'}{\ip}{(\Nil, \str')}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmExec:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+	\using{\rexecns}
+	\qquad
+	\text{met\enspace
+		\parbox{36mm}{$(\var,\stk') = \pop{\stk}$,\\
+        $\pgm' = \parsepgm{\var'}$\\
+        $\str'~k = \lambda\forall k \in\String$.%tab tussen lambda en forall misschien mooier
+        }
+	}
+\end{prooftree}
+$$
+
+$\parsepgmop$ definiëren we als volgt, met hulpfunctie $\parsestrop$:
+
+$$
+	\parsepgm s =
+		\begin{cases}
+			\lambda & \text{als $s=\lambda$}\\
+            \parsepgm{s'} & \text{als $s=cs'$ met $c=$` `}\\
+            \parsestr{s'} & \text{als $s=cs'$ met $c=$`''`}\\
+            \StmCat:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`+`}\\
+            \StmHead:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`h`}\\
+            \StmTail:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`t`}\\
+            \StmQuotify:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`q`}\\
+            \StmPut:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`p`}\\
+            \StmGet:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`g`}\\
+            \StmInput:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`i`}\\
+            \StmOutput:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`o`}\\
+			\StmExec:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`x`}\\
+		\end{cases}
+$$
+Het tweede geval van $\parsepgmop$ zorgt ervoor dat een programma-string spaties mag bevatten, die syntactisch zelf geen betekenis hebben. Dit is in overeenkomst met de specificatie, maar op zich niet nodig.
+$$
+	\parsestr s =
+		\begin{cases}
+			\lambda:\parsepgm{s'} & \text{als $s=cs'$ met $c=$'~'''}\\
+            `\backslash`~`''`~\parsestr{s'} & \text{als $s=cs'$ met $c=$`$\backslash$`~`''`}\\
+            c~\parsestr{s'} & \text{als $s=cs'$ met $c \in\Char$}\\
+		\end{cases}
+$$
+Het tweede geval van $\parsestrop$ zorgt ervoor dat ge-escapete aanhalingstekens de string niet beëindigen.
+

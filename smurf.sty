@@ -1,6 +1,12 @@
 % General
 \def\isdef{\stackrel{\text{def}}{=}}
 
+\def\parsepgmop{\mathit{Parse}}
+\def\parsepgm#1{\parsepgmop\left(#1\right)}
+
+\def\parsestrop{\mathit{ParseStr}}
+\def\parsestr#1{\parsestrop\left(#1\right)}
+
 % Types
 \def\Pgm{\mathit{Pgm}}
 \def\Stm{\mathit{Stm}}
@@ -17,6 +23,7 @@
 \def\popop{\mathit{pop}}
 \def\push#1#2{\pushop\left(#1, #2\right)}
 \def\pop#1{\popop\left(#1\right)}
+
 
 % Store
 \def\putop{\mathit{put}}
@@ -48,6 +55,7 @@
 \def\rule#1#2{[\mbox{#1}_{\mbox{\footnotesize{#2}}}]}
 \def\rgetns{\rule{get}{ns}}
 \def\rputns{\rule{put}{ns}}
+\def\rexecns{\rule{exec}{ns}}
 
 % Common names
 \def\stk{\mathit{stk}}
