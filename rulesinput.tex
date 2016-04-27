@@ -1,0 +1,42 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Input}}
+
+\begin{quote}
+	i - takes a string from user input, and places it on the stack.
+\end{quote}
+
+In het bijzonder dit commando is erg slecht gedefinieerd. Mag deze input
+bijvoorbeeld line feeds bevatten? Een naïeve implementatie die van stdin
+gebruik maakt zou standaard splitsen op line feeds en dit dus niet toestaan.
+Een andere implementatie zou gebruik kunnen maken van grafische prompts waarin
+het wél mogelijk is meerdere regels input te geven.
+
+Om bij het redeneren over de semantiek geen last te hebben van zulk soort
+implementatiedetails hebben we ervoor gekozen hier tot op een hoog niveau van
+te abstraheren. We gaan ervan uit dat we een stack van strings, $\Input$,
+hebben die ons de input geeft. Hoe deze stack is geïmplementeerd doet niet ter
+zake. Ook leggen we geen restricties op aan de karakters waaruit haar elementen
+bestaan.
+
+We gaan er verder van uit dat de gebruiker zijn programma volledig wil
+uitvoeren en dus voldoende input zal geven, waardoor $\pop\ip$ altijd
+gedefinieerd is. Geeft de gebruiker niet genoeg input, dan hoeven we dus geen
+afleidingsboom maken (en we zullen dit ook onmogelijk maken).
+
+Dit geeft de volgende regel:
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\ip'}{(\push\val\stk, \str)}
+		{\ip''}{\op}{\st}
+	\justifies
+	\trans
+		{\StmInput:\pgm}{\ip}{(\stk,\str)}
+		{\ip''}{\op}{\st}
+	\using{\rinputns}
+	\qquad
+	\text{met $(\val,\ip')=\pop\ip$}
+\end{prooftree}
+$$
+
