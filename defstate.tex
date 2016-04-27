@@ -2,9 +2,17 @@
 \subsection{Toestanden}
 \label{sec:def:state}
 
-Een state $s\in\State$ van Smurf bevat zowel een stack als een variable store.
-Hieruit volgt de voor de hand liggende definitie voor $\State$
-$$\State \isdef \Stack{\String} \times (\String \to \String)$$
+Een toestand $s\in\State$ van Smurf bevat zowel een stack als een variable
+store. Hieruit volgt de voor de hand liggende definitie voor $\State$,
+$$\State \isdef \Stack{\String} \times (\String \to \String),$$
 waarbij we $s=(\stk,\str)\in\State$ lezen als de toestand $s$ met stack $\stk$
 en variable store $\str$.
+
+De variable store is een totale functie. Initieel zijn alle waardes in de store
+$\lambda$ in overeenstemming met de documentatie \cite{safalra}:
+
+\begin{quote}
+	Any string can be used as a variable name, including the empty string. All
+	variable values are initially set to the empty string.
+\end{quote}
 

@@ -12,6 +12,7 @@
 
 % Stacks
 \def\Stack#1{\mathbf{Stack}\left[\mathit{#1}\right]}
+\def\Nil{\texttt{Nil}}
 \def\pushop{\mathit{push}}
 \def\popop{\mathit{pop}}
 \def\push#1#2{\pushop\left(#1, #2\right)}
@@ -39,6 +40,9 @@
 % Transitions
 \def\trans#1#2#3#4#5#6{\left\langle#1,#2,#3\right\rangle\to\left(#4,#5,#6\right)}
 
+% Rules
+\def\rgetns{[\mbox{get}_{\mbox{ns}}]}
+
 % Common names
 \def\stk{\mathit{stk}}
 \def\str{\mathit{str}}
@@ -47,4 +51,5 @@
 \def\pgm{\mathit{pgm}}
 \def\stm{\mathit{stm}}
 \def\st{\mathit{st}}
+\def\var{\mathit{var}}
 

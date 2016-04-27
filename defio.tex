@@ -13,8 +13,8 @@ simpel datatype met de volgende syntax:
 
 Op een stack zijn twee instructies gedefinieerd:
 \begin{gather*}
-	\pushop : \Stack{a} \times a \to \Stack{a} \\
-	\push{s}{e} \isdef [e:s] \\[1em]
+	\pushop : a \times \Stack{a} \to \Stack{a} \\
+	\push{e}{s} \isdef [e:s] \\[1em]
 	\popop : \Stack{a} \to a \times \Stack{a} \\
 	\pop{[e:s]} \isdef (e,s) \\
 \end{gather*}

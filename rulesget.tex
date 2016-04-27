@@ -1,0 +1,19 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Get}}
+
+$\StmGet$ neemt het bovenste element van de stack en gebruikt dit als
+variabelenaam om in de variable store te zoeken.
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\i}{([\str~\var:\stk], \str)}
+		{\i'}{\o}{\st}
+	\justifies
+	\trans
+		{\StmGet:\pgm}{\i}{([\var:\stk],\str)}
+		{\i'}{\o}{\st}
+	\using{\rgetns}
+\end{prooftree}
+$$
+

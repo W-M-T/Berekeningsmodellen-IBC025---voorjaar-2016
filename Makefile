@@ -12,7 +12,7 @@ all: $(PDF)
 	$(TEX) $(TEXOPTS) $(basename $@)
 	$(TEX) $(TEXOPTS) $(basename $@)
 
-%.fmt: preamble.tex
+%.fmt: preamble.tex $(wildcard *.sty)
 	$(TEX) -ini -jobname="$(basename $@)" "&$(TEX) $<\dump"
 
 clean:
