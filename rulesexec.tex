@@ -51,8 +51,8 @@ $$
 	\parsestr s =
 		\begin{cases}
 			\lambda:\parsepgm{s'} & \text{als $s=cs'$ met $c=$`''`}\\
-            `\backslash`~`''`~\parsestr{s'} & \text{als $s=cs'$ met $c=$`$\backslash$`~`''`}\\
-            c~\parsestr{s'} & \text{als $s=cs'$ met $c \in\Char\backslash\{`''`\}$}\\
+            `\backslash`~k~\parsestr{s'} & \text{als $s=cs'$ met $c=$`$\backslash$`~$k$ en $k\in\Char$}\\
+            c~\parsestr{s'} & \text{als $s=cs'$ met $c \in\Char\backslash\{`''`, `\backslash`\}$}\\
 		\end{cases}
 $$
 Het tweede geval van $\parsestrop$ zorgt ervoor dat ge-escapete aanhalingstekens de string niet beëindigen.
