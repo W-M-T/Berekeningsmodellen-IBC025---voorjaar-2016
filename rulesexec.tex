@@ -1,11 +1,11 @@
-% vim: set spelllang=nl:
+﻿% vim: set spelllang=nl:
 \subsection{\texttt{Exec}}
 
 \begin{quote}
 	x - Executes the string at the top of the stack as a Smurf program. The stack and variable store are erased.
 \end{quote}
 
-We halen een strings van de stack en gebruiken $\parsepgmop$ om dit in een programma om te zetten. Dit wordt het nieuwe programma om uitgevoerd te worden. Als de $\stk$ leeg is is deze regel niet toepasbaar, omdat $\pop\stk$ dan niet gedefinieerd is. Ook is deze regel niet toepasbaar als de gepopte string zelf geen geldig Smurf-programma is, omdat $\parsepgmop$ dan niet gedefinieerd is.
+We halen een string van de stack en gebruiken $\parsepgmop$ om dit in een programma om te zetten. Dit wordt het nieuwe programma om uitgevoerd te worden. Als de $\stk$ leeg is is deze regel niet toepasbaar, omdat $\pop\stk$ dan niet gedefinieerd is. Ook is deze regel niet toepasbaar als de gepopte string zelf geen geldig Smurf-programma is, omdat $\parsepgmop$ dan niet gedefinieerd is.
 
 $$
 \begin{prooftree}
