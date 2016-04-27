@@ -1,3 +1,5 @@
+\RequirePackage{amssymb}
+
 % General
 \def\isdef{\stackrel{\text{def}}{=}}
 
@@ -24,10 +26,10 @@
 \def\push#1#2{\pushop\left(#1, #2\right)}
 \def\pop#1{\popop\left(#1\right)}
 
-
 % Store
 \def\putop{\mathit{put}}
 \def\put#1#2#3{\putop\left(#1, #2, #3\right)}
+\def\emptystore{\varnothing}
 
 % Syntax
 \def\SynPgm{\langle\Pgm\rangle}
