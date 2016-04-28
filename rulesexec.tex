@@ -38,7 +38,7 @@ $$
 		\begin{cases}
 			\lambda                   & \text{als $s=\lambda$}\\
 			\parsepgm{s'}             & \text{als $s=c~s'$ met $c$ whitespace}\\
-			\parsestr{s'}             & \text{als $s=\texttt{\char`\"}~s'$} \\
+			\parsestr{s'}             & \text{als $s=\texttt{"}~s'$} \\
 			\StmCat:\parsepgm{s'}     & \text{als $s=\texttt{+}~s'$} \\
 			\StmHead:\parsepgm{s'}    & \text{als $s=\texttt{h}~s'$} \\
 			\StmTail:\parsepgm{s'}    & \text{als $s=\texttt{t}~s'$} \\
@@ -58,14 +58,38 @@ Dit is in overeenkomst met de specificatie, maar op zich niet nodig.
 $$
 	\parsestr s =
 		\begin{cases}
-			\lambda:\parsepgm{s'} & \text{als $s=\texttt{\char`\"}~s'$} \\
-			\texttt{\textbackslash}~k~\parsestr{s'} & \text{als $s=\texttt{\textbackslash}~k~s'$ met
-				$k \in\Char$} \\
+			\lambda:\parsepgm{s'} & \text{als $s=\texttt{"}~s'$} \\
+			\unescape{c}~\parsestr{s'} & \text{als $s=\texttt{\textbackslash}~c~s'$
+				met $c \in\Char$} \\
 			c~\parsestr{s'} & \text{als $s=c~s'$ met $c
-				\in\Char\setminus\{\texttt{\char`\",\textbackslash}\}$}\\
+				\in\Char\setminus\{\texttt{"},\texttt{\textbackslash}\}$}\\
 		\end{cases}
 $$
 
 Het tweede geval van $\parsestrop$ zorgt ervoor dat ge-escapete
 aanhalingstekens de string niet beëindigen.
+
+Hierbij gebruiken we $\unescapeop$ om bepaalde karakters te unescapen:
+
+$$
+	\unescape c =
+		\begin{cases}
+			\text{het LF-karakter}      & \text{als $c=\texttt{n}$} \\
+			\texttt{"}                  & \text{als $c=\texttt{"}$} \\
+			\texttt{\textbackslash}     & \text{als $c=\texttt{\textbackslash}$} \\
+			\texttt{\textbackslash~$c$} & \text{anderszins}
+		\end{cases}
+$$
+
+Het laatste alternatief geeft aan dat `ongeldige escape sequences' worden
+behandeld alsof de backslash er twee keer stond. Dit is in overeenstemming met
+het commentaar op de specificatie en met de Perl interpreter: %todo referentie
+\begin{quote}
+	This [the specification] does not specify the behaviour of invalid escape
+	sequences. The Perl interpreter treats invalid escape sequences as if the
+	backslash had occured twice - that is, \textbackslash X is treated as
+	\textbackslash\textbackslash X. For maximum compatibility, Smurf programs
+	should not rely on this behaviour and should always ensure valid escape
+	sequences are used.
+\end{quote}
 
