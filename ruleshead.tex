@@ -1,0 +1,29 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Head}}
+
+\begin{quote}
+	h - Pops a string from the stack, and pushes its head, ie the first
+	character. This causes an error if used on the empty string.
+\end{quote}
+
+In plaats van het geven van een error kiezen we ervoor te voorkomen dat we een
+afleidingsboom kunnen maken wanneer $\StmHead$ wordt uitgevoerd op het moment
+dat het element bovenop de stack de lege string is.
+
+Dit geeft de volgende regel:
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\ip}{(\push{s}{\stk'}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmHead:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+	\using{\rheadns}
+	\qquad
+	\text{met $(c~s,\stk') = \pop{\stk}$.}
+\end{prooftree}
+$$
+
