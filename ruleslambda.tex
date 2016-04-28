@@ -1,0 +1,17 @@
+% vim: set spelllang=nl:
+\subsection{$\lambda$}
+
+We hebben één axioma nodig om het basisgeval van het lege programma af te
+handelen. Deze regel geeft aan dat het lege programma niets doet: het gebruikt
+geen input, geeft geen output, en verandert de state niet.
+
+$$
+\begin{prooftree}
+	\axjustifies
+	\trans
+		{\lambda}{\ip}{\st}
+		{\ip}{\Nil}{\st}
+	\using{\rlambdans}
+\end{prooftree}
+$$
+
