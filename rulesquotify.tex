@@ -12,6 +12,29 @@ q - "Quotifies" the string on top of the stack,      so that it can be placed
 
 
 Er worden dus quotes om de string heen gezet. Als er in de oorspronkelijke string quotes stonden dan wordt voor iedere van deze quotes een "$\backslash$" geplaats. 
+Om de backslashes te zetten word gebruik gemaakt van de hulpfunctie quo
 
 Dit geeft de volgende regel:
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\ip}{(\push{"quo (c s)"}{\stk'}, \str) }
+		{\ip}{\op}{\st}
+	\justifies
+	\trans
+		{\StmQuotify:\pgm}{\ip}{(\stk,\str)}
+		{\ip}{\op}{\st}
+	\using{\rquotifyns}
+	\qquad
+	\text{met (c s, stk') = pop (stk)
+	}
+\end{prooftree}
+$$
 
+$$
+	\quo {c} {s} =
+		\begin{cases}
+			\texttt{" c quo s}    & \text{als $c=\texttt{"}$} \\
+			\texttt{c quo s} & \text{anderszins}
+		\end{cases}
+$$

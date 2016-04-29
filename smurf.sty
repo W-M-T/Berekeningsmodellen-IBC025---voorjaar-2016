@@ -1,5 +1,4 @@
 \RequirePackage{amssymb}
-\RequirePackage{verbatim}
 
 % General
 \def\isdef{\stackrel{\text{def}}{=}}
@@ -12,6 +11,8 @@
 \def\parsestr#1{\parsestrop\left(#1\right)}
 \def\unescapeop{\mathit{unescape}}
 \def\unescape#1{\unescapeop\left(#1\right)}
+\def\quo{\mathit{quo}}
+\def\quo#1{\quoop\left(#1\right)}
 
 % Types
 \def\Pgm{\mathit{Pgm}}
@@ -61,7 +62,6 @@
 \def\rule#1#2{[\mbox{#1}_{\mbox{\footnotesize{#2}}}]}
 \def\rlambdans{\rule{$\lambda$}{ns}}
 \def\rheadns{\rule{head}{ns}}
-\def\rtailns{\rule{tail}{ns}}
 \def\rgetns{\rule{get}{ns}}
 \def\rputns{\rule{put}{ns}}
 \def\rinputns{\rule{input}{ns}}
@@ -80,6 +80,6 @@
 \def\val{\mathit{val}}
 
 % Programs
-\newenvironment{smurf}{\begin{center}\tt}{\end{center}}
+\newenvironment{smurf}{\tt\begin{center}}{\end{center}}
 \let\smurfinline\texttt
 
