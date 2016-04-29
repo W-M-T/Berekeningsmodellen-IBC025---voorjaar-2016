@@ -4,12 +4,29 @@
 
 \begin{quote}
     + - concatenates the top two strings on the stack. The string pushed earlier
-    appears earlier in the resulting string, eg
-    "Zork" "mid" +
-    would result in the string "Zorkmid" being placed on the stack.
+		appears earlier in the resulting string, eg \smurfinline{"Zork" "mid" +}
+		would result in the string \texttt{Zorkmid} being placed on the stack.
 \end{quote}
 
-De twee strings die als laatste op de stack zijn gezet worden dus samen gevoegd en terug op de stack gezet.  
+De string bovenop de stack wordt toegevoegd aan de string hieronder. Het
+resultaat wordt op de stack gezet.
 
 Dit geeft de volgende regel:
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\ip}{(\push{s1~s2}{\stk''}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmCat:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+	\using{\rcatns}
+	\qquad
+	\text{met\enspace
+		\parbox{36mm}{$(s_2,\stk') = \pop{\stk}$,\\$(s_1,\stk'') = \pop{\stk'}$.}
+	}
+\end{prooftree}
+$$
 

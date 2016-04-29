@@ -3,22 +3,22 @@
 \label{sec:rules:quotify}
 
 \begin{quote}
-q - "Quotifies" the string on top of the stack,      so that it can be placed
-    into a Smurf program as a literal string, eg
-    Arthur "two-sheds" Jackson
-    becomes
-    "Arthur $\backslash$ "two-sheds $\backslash$ " Jackson"
+	q - "Quotifies" the string on top of the stack, so that it can be placed into
+	a Smurf program as a literal string, eg \texttt{Arthur "two-sheds" Jackson}
+	becomes \texttt{"Arthur $\backslash$"two-sheds$\backslash$" Jackson"}.
 \end{quote}
 
 
-Er worden dus quotes om de string heen gezet. Als er in de oorspronkelijke string quotes stonden dan wordt voor iedere van deze quotes een "$\backslash$" geplaats. 
-Om de backslashes te zetten word gebruik gemaakt van de hulpfunctie quo
+Er worden aanhalingstekens om de string bovenop de stack gezet. Als er in de
+oorspronkelijke string aanhalingstekens, backslashes of LF-karakters staan, dan
+wordt hier een \verb$\$ voor geplaatst. Hiervoor gebruiken we de hulpfunctie
+$\escapeop$.
 
 Dit geeft de volgende regel:
 $$
 \begin{prooftree}
 	\trans
-		{\pgm}{\ip}{(\push{"quo (c s)"}{\stk'}, \str) }
+		{\pgm}{\ip}{(\push{\texttt{"}\escape{s}\texttt{"}}{\stk'}, \str) }
 		{\ip}{\op}{\st}
 	\justifies
 	\trans
@@ -26,15 +26,15 @@ $$
 		{\ip}{\op}{\st}
 	\using{\rquotifyns}
 	\qquad
-	\text{met (c s, stk') = pop (stk)
-	}
+	\text{met $(s, stk') = \pop{\stk}$.}
 \end{prooftree}
 $$
 
 $$
-	\quo {c} {s} =
+	\escape{c~s} =
 		\begin{cases}
-			\texttt{" c quo s}    & \text{als $c=\texttt{"}$} \\
-			\texttt{c quo s} & \text{anderszins}
+			\texttt{\textbackslash}~c~s & \text{als
+				$c\in\{\texttt{"},\texttt{\textbackslash},\text{het LF-karakter}\}$} \\
+			c~\escape{s}                & \text{anderszins}
 		\end{cases}
 $$
