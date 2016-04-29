@@ -68,29 +68,7 @@ $$
 $$
 
 Het tweede geval van $\parsestrop$ zorgt ervoor dat ge-escapete
-aanhalingstekens de string niet beëindigen.
-
-Hierbij gebruiken we $\unescapeop$ om bepaalde karakters te unescapen:
-
-$$
-	\unescape c =
-		\begin{cases}
-			\text{het LF-karakter}      & \text{als $c=\texttt{n}$} \\
-			\texttt{"}                  & \text{als $c=\texttt{"}$} \\
-			\texttt{\textbackslash}     & \text{als $c=\texttt{\textbackslash}$} \\
-			\texttt{\textbackslash~$c$} & \text{anderszins}
-		\end{cases}
-$$
-
-Het laatste alternatief geeft aan dat `ongeldige escape sequences' worden
-behandeld alsof de backslash er twee keer stond. Dit is in overeenstemming met
-het commentaar op de specificatie en met de Perl interpreter: %todo referentie
-\begin{quote}
-	This [the specification] does not specify the behaviour of invalid escape
-	sequences. The Perl interpreter treats invalid escape sequences as if the
-	backslash had occured twice - that is, \textbackslash X is treated as
-	\textbackslash\textbackslash X. For maximum compatibility, Smurf programs
-	should not rely on this behaviour and should always ensure valid escape
-	sequences are used.
-\end{quote}
+aanhalingstekens de string niet beëindigen. Hierbij gebruiken we $\unescapeop$
+om bepaalde karakters te unescapen. Zie voor de definitie van deze regel
+\autoref{sec:rules:push}.
 

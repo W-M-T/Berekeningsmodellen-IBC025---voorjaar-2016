@@ -3,26 +3,52 @@
 \label{sec:rules:push}
 
 \begin{quote}
-	"text" - Places the string on top of the stack (without the quotes). The string
-    may include the following escape sequences: newline, the " - character and the $\backslash$ - character
+	"text" - Places the string on top of the stack (without the quotes). The
+	string may include the following escape sequences: newline, the
+	\verb$"$-character and the \verb$\$-character.
 \end{quote}
 
-De string tussen de quotes word op de stack gezet. Eerst word er nog gecontroleerd op newlines, "-characters en $\backslash$ characters. Dit gaat doormiddel van de hulpfunctie unescape. 
+De string tussen de aanhalingstekens word op de stack gezet, nadat escape
+sequences eruit zijn gehaald middels de hulpfunctie $\unescapeop$. Het is,
+zoals het commentaar op de specificatie \cite{safalra} aangeeft, niet
+gedefinieerd wat er met ongeldige escape sequences gebeurt.
 
 Dit geeft de volgende regel:
 
 $$
 \begin{prooftree}
 	\trans
-		{\pgm}{\ip}{(\push{String}{\stk}), \str)}
-		{\ip}{\op}{\st}
+		{\pgm}{\ip}{(\push{s}{\stk}), \str)}
+		{\ip'}{\op}{\st}
 	\justifies
 	\trans
-		{\StmPush<String>:\pgm}{\ip}{(\stk,\str)}
-		{\ip}{\op}{\st}
+		{\StmPush~s:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
 	\using{\rpushns}
-	\qquad
 \end{prooftree}
 $$
 
+De definitie van $\unescapeop$ is als volgt:
+
+$$
+	\unescape c =
+		\begin{cases}
+			\text{het LF-karakter}      & \text{als $c=\texttt{n}$} \\
+			\texttt{"}                  & \text{als $c=\texttt{"}$} \\
+			\texttt{\textbackslash}     & \text{als $c=\texttt{\textbackslash}$} \\
+			\texttt{\textbackslash~$c$} & \text{anderszins}
+		\end{cases}
+$$
+
+Het laatste alternatief geeft aan dat `ongeldige escape sequences' worden
+behandeld alsof de backslash er twee keer stond. Dit is in overeenstemming met
+het commentaar op de specificatie en met de Perl interpreter: %todo referentie
+\begin{quote}
+	This [the specification] does not specify the behaviour of invalid escape
+	sequences. The Perl interpreter treats invalid escape sequences as if the
+	backslash had occured twice - that is, \textbackslash X is treated as
+	\textbackslash\textbackslash X. For maximum compatibility, Smurf programs
+	should not rely on this behaviour and should always ensure valid escape
+	sequences are used.
+\end{quote}
  
