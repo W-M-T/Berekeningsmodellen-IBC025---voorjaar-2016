@@ -22,7 +22,12 @@
 % Eigen packages
 \usepackage{smurf}
 
+% Settings, fixes
 \setlist{itemsep=0pt}
+\addto\extrasdutch{%
+	\renewcommand{\sectionautorefname}{Sectie}
+	\renewcommand{\subsectionautorefname}{Paragraaf}
+}
 
 % Eigen commando's en environments, niet specifiek voor Smurf
 \declaretheoremstyle[
