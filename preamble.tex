@@ -7,18 +7,30 @@
 % Standaard packages
 \usepackage[hidelinks]{hyperref}
 \usepackage[utf8]{inputenc}
-\usepackage[dutch]{babel}
+\usepackage[dutch,shorthands=off]{babel}
 \usepackage{geometry}
 
 % Taakspecifieke packages
 \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
 \usepackage{prooftree}
 \usepackage{stackrel}
 \usepackage{syntax}
+\usepackage{thmtools}
 
 % Eigen packages
 \usepackage{smurf}
 
-% Fix voor babel dutch
-\everymath{\shorthandoff{"}}
+\setlist{itemsep=0pt}
+
+% Eigen commando's en environments, niet specifiek voor Smurf
+\declaretheoremstyle[
+	title=Voorbeeld,
+	parent=section,
+	spacebelow=1em,
+	preheadhook=\nobreak\noindent\hrulefill,
+	prefoothook=\vspace*{\dimexpr-\baselineskip+\topsep\relax}\endgraf\nobreak\noindent\hrulefill
+]{lined}
+\declaretheorem[style=lined]{exmp}
 

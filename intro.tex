@@ -1,0 +1,56 @@
+% vim: set spelllang=nl:
+\section{Inleiding}
+\label{sec:intro}
+
+Smurf is een esoterische programmeertaal oorspronkelijk ontworpen door Matthew
+Westcott. In de specificatie \cite{safalra} beschrijft hij kort wat Smurf is:
+\begin{quote}
+	Smurf = String-based MURiel Forthoid
+
+	Smurf is a tarpit based on the self-propagation paradigm featured in Muriel.
+	The only native data type is the string, and operations are carried out on
+	strings in a forty manner.
+\end{quote}
+We hebben dus te maken met een Forth-achtige programmeertaal. De eigenschappen
+hiervan die we terugzien in Smurf zijn voornamelijk reflection,
+stackgeörienteerd en `geconcateneerd programmeren'. We kunnen het programma dus
+dynamisch aanpassen, werken met een stack en schrijven een programma als één
+grote functiecompositie (zonder met functieapplicaties te werken). Voordat we
+alle commando's bespreken is een voorbeeld op zijn plaats.
+
+\begin{exmp}
+	We bekijken het volgende programma:
+	\begin{smurf}"papa" "smurf" + o\end{smurf}
+	Hier gebruiken we drie functiecomposities om vier functies aan elkaar te
+	knopen:
+	\begin{itemize}
+		\item \smurfinline{"papa"} zet de string `\texttt{papa}' op de stack.
+		\item \smurfinline{"smurf"} zet de string `\texttt{smurf}' op de stack.
+		\item \smurfinline{+} concateneert de twee elementen bovenop de stack
+			(eerst gepushte element eerst) en zet het resultaat op de stack.
+		\item \smurfinline{o} output het element bovenop de stack.
+	\end{itemize}
+	De output van dit programma is dus `papasmurf'.
+
+	We hebben spaties gebruikt voor de leesbaarheid. Dit is toegestaan maar niet
+	vereist. Het programma \smurfinline{"papa""smurf"+o} is eveneens geldig.
+\end{exmp}
+
+Naast de stack kent Smurf ook een \emph{variable store} die variabelenamen
+(strings) naar waardes (strings) stuurt. Het gebruik hiervan is best te
+illustreren met een voorbeeld:
+
+\begin{exmp}
+	We bekijken het volgende programma:
+	\begin{smurf}"smurf" "papa" p "papa" g o\end{smurf}
+	Nadat `smurf' en `papa' op de stack zijn gezet gebruiken we \smurfinline{p}
+	om de variabele `papa' de waarde `smurf' te geven. Hierna is de stack weer
+	leeg. Vervolgens zetten we `papa' op de stack en gebruiken we \smurfinline{g}
+	om het bovenste element als variabele op te zoeken in de variable store en de
+	waarde ervan op de stack te zetten. De stack bestaat nu dus uit het element
+	`smurf'. Met \smurfinline{o} sturen we deze string naar de output.
+\end{exmp}
+
+\input{introcoms}
+\input{org}
+
