@@ -1,0 +1,17 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Quotify}}
+\label{sec:rules:quotify}
+
+\begin{quote}
+q - "Quotifies" the string on top of the stack,      so that it can be placed
+    into a Smurf program as a literal string, eg
+    Arthur "two-sheds" Jackson
+    becomes
+    "Arthur $\backslash$ "two-sheds $\backslash$ " Jackson"
+\end{quote}
+
+
+Er worden dus quotes om de string heen gezet. Als er in de oorspronkelijke string quotes stonden dan wordt voor iedere van deze quotes een "$\backslash$" geplaats. 
+
+Dit geeft de volgende regel:
+
