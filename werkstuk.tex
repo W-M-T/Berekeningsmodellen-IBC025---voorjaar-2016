@@ -1,4 +1,5 @@
 % vim: set spelllang=nl:
+%&werkstuk
 \documentclass[a4paper]{article}
 
 \title{De semantiek van Smurf} %todo working title
@@ -22,7 +23,12 @@
 % Eigen packages
 \usepackage{smurf}
 
+% Settings, fixes
 \setlist{itemsep=0pt}
+\addto\extrasdutch{%
+	\renewcommand{\sectionautorefname}{Sectie}
+	\renewcommand{\subsectionautorefname}{Paragraaf}
+}
 
 % Eigen commando's en environments, niet specifiek voor Smurf
 \declaretheoremstyle[
@@ -33,9 +39,6 @@
 	prefoothook=\vspace*{\dimexpr-\baselineskip+\topsep\relax}\endgraf\nobreak\noindent\hrulefill
 ]{lined}
 \declaretheorem[style=lined]{exmp}
-
-%&werkstuk
-% vim: set spelllang=nl:
 
 \begin{document}
 
