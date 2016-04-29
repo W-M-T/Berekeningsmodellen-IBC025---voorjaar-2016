@@ -1,0 +1,30 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Output}}
+
+\begin{quote}
+	o - Output the string at the top of the stack
+\end{quote}
+
+	Net als bij het inputcommando gaan we op een abstracte wijze met de output om.
+We houden gedurende het hele programma een stack van strings, genaamd $\Output$ bij,
+waar het programma zijn output naar wegschrijft.
+
+Dit geeft de volgende regel:
+
+$$
+\prooftree
+        \trans
+        {\pgm}{\ip}{(\stk',\str)}
+        	{\ip'}{[\op:\Nil]}{\st}
+	\justifies
+        \trans
+        {\StmOutput:\pgm}{\ip}{(\stk,\str)}
+            {\ip'}{[\op:[var:\Nil]]}{\st}
+	\using{\routputns}
+	\qquad
+	\text{met $(\var,\stk') = \pop{\stk}$.}
+\endprooftree
+$$
+
+Merk op dat eenzelfde regel, waar $var$ niet achteraan maar vooraan zou komen te staan, even geldig is. Geen van beide opties is beter dan de ander, omdat we geen aannames doen over doe de $\Output$-stack wordt verwerkt.
+
