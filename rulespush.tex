@@ -1,0 +1,28 @@
+% vim: set spelllang=nl:
+\subsection{\texttt{Push}}
+\label{sec:rules:push}
+
+\begin{quote}
+	"text" - Places the string on top of the stack (without the quotes). The string
+    may include the following escape sequences: newline, the " - character and the $\backslash$ - character
+\end{quote}
+
+De string tussen de quotes word op de stack gezet. Eerst word er nog gecontroleerd op newlines, "-characters en $\backslash$ characters. Dit gaat doormiddel van de hulpfunctie unescape. 
+
+Dit geeft de volgende regel:
+
+$$
+\begin{prooftree}
+	\trans
+		{\pgm}{\ip}{(\push(\unescape(String)\stk), \str)}
+		{\ip}{\op}{\st}
+	\justifies
+	\trans
+		{\StmPush<String>:\pgm}{\ip}{(\stk,\str)}
+		{\ip}{\op}{\st}
+	\using{\rpushns}
+	\qquad
+\end{prooftree}
+$$
+
+ 
