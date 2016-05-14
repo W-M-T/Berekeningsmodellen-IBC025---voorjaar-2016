@@ -16,11 +16,15 @@ elementen op de stack doet, worden die elementen altijd verwijderd.
 	\item[\smurfinline{i} of $\StmInput$]
 		Plaatst een string van `user input' op de stack. Hierbij wordt
 		\texttt{\textbackslash} gebruikt om LF-karakters, dubbele aanhalingstekens
-		en backslashes te escapen.Echt mag je in de string linefeeds gebruiken. Hierbij is het niet van belang om te weten hoe de user input word afgesloten.
+		en backslashes te escapen. Echt mag je in de string linefeeds gebruiken.
+		Hierbij is het niet van belang om te weten hoe de user input word
+		afgesloten.
 	\item[\smurfinline{o} of $\StmOutput$]
 		Stuurt het bovenste element van de stack naar `de output'.
 	\item[\smurfinline{p} of $\StmPut$]
-	    Hierbij word ervoor gezorgd dat de waarde van de variablenaam bovenop de stack verwijst naar de string die daaronder staat. \item[\smurfinline{h} of $\StmHead$]
+		Hierbij word ervoor gezorgd dat de waarde van de variablenaam bovenop de
+		stack verwijst naar de string die daaronder staat. 
+	\item[\smurfinline{h} of $\StmHead$]
 		Zet het eerste karakter van de string bovenop de stack op de
 		stack.
 	\item[\smurfinline{t} of $\StmTail$]
@@ -28,7 +32,7 @@ elementen op de stack doet, worden die elementen altijd verwijderd.
 	\item[\smurfinline{q} of $\StmQuotify$]
 		Manipuleert de string bovenop de stack zodat die als $\StmPush$-commando in
 		een Smurfprogramma kan worden gebruikt: escapet LF-karakters, dubbele
-		aanhalingstekens en back- slashes met een backslash, en plaatst dubbele
+		aanhalingstekens en back\-slashes met een backslash, en plaatst dubbele
 		aanhalingstekens om de hele string. Het resultaat wordt op de stack gezet.
 	\item[\smurfinline{x} of $\StmExec$]
 		Voert de string bovenop de stack uit als Smurfprogramma. Het programma

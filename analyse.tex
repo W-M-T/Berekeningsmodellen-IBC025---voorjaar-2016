@@ -1,13 +1,21 @@
 % vim: set spelllang=nl:
 \section{Analyse}
 \label{sec:analyse}
-Als analyse willen we graag een stuk code dat een string omdraait bekijken aan de hand van onze semantiek regels. Deze code ziet er als volgt uit. 
-	\begin{smurf}
+Als analyse willen we graag een stuk code dat een string omdraait bekijken aan
+de hand van onze semantiekregels. Deze code ziet er als volgt uit:
+\begin{smurf}
 	\footnotesize
-	"+"i+""p""gtg""gt"i"p"\backslash"\backslash"p\backslash"i\backslash"gh\backslash"o\backslash"g+\backslash"o\backslash"p\backslash"i\backslash"gt\backslash"i\backslash"p\backslash"\backslash\backslash\backslash"+\backslash\backslash\backslash"\backslash\backslash\backslash\backslash\backslash\backslash"\backslash\backslash\backslash"p
-    \backslash"\backslash"i\backslash"gq+\backslash"tg\backslash"+\backslash"i\backslash"gq+\backslash"\backslash\backslash\backslash"i\backslash\backslash\backslash"p\backslash"+\backslash"o\backslash"gq+\backslash"\backslash\backslash\backslash"o\backslash\backslash\backslash"p\backslash"+\backslash"\backslash"gq+\backslash"\backslash"g+\backslash"\backslash"
-    p\backslash"o\backslash"gq\backslash"o\backslash"+\backslash"+\backslash"pgx"""p"\backslash"+\backslash"\backslash"\backslash"p""i"gq+"tg"+"i"gq+"\backslash"i\backslash"p\backslash"\backslash""+""gq+""g+""p
-    """+""i"g+pgx
-	\end{smurf}
+	"+"i+ ""p ""gtg ""gt "i"p\\
+	%todo layout, dit loopt over de regel heen (maar geeft wel aan waar de
+	%commando's liggen
+	"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"\\
+	""p "\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p" "i"gq+ "tg"+ "i"gq+\\
+	"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""+ ""gq+ ""g+ ""p "" "+" "i"g+ pgx
+\end{smurf}
 	
-We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij onder verschillende interpetaties van de specificaties een geheel andere uitkomst mogelijk is. Wellicht kunnen we daarna nieuwe specificaties (gebaseerd op de bestaande specificaties) maken die wel eenduidig zijn en aansluiten op onze semantiekregels. 
+We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen
+eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij
+onder verschillende interpretaties van de specificaties een geheel andere
+uitkomst mogelijk is. Wellicht kunnen we daarna nieuwe specificaties (gebaseerd
+op de bestaande specificaties) maken die wel eenduidig zijn en aansluiten op
+onze semantiekregels.

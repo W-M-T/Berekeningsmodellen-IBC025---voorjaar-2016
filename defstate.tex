@@ -16,10 +16,11 @@ $\lambda$ in overeenstemming met de documentatie \cite{safalra}:
 	variable values are initially set to the empty string.
 \end{quote}
 
-Een toewijzing van $\val$ aan $\var$ noteren we als $\var\mapsto\val$, zodat we
-bijvoorbeeld $\texttt{x}\mapsto\texttt{hello world}$ noteren voor de store
-die \texttt{x} naar ``hello world'' stuurt. We laten de strings die naar
-$\lambda$ sturen normaal gesproken weg. De initiële store schrijven we dus als
+Een toewijzing van $\val$ aan $\var$ noteren we als $\var\mapsto\val$. Een
+store is een verzameling zulke toewijzingen, zodat we bijvoorbeeld
+$\{\texttt{x}\mapsto\texttt{hello world}\}$ noteren voor de store die
+\texttt{x} naar ``hello world'' stuurt. We laten de strings die naar $\lambda$
+sturen normaal gesproken weg. De initiële store schrijven we dus als
 $\emptystore$.
 
 Om de waarde van een key $k$ uit store $\str$ te halen gebruiken we simpelweg
