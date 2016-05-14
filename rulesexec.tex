@@ -8,7 +8,7 @@
 \end{quote}
 
 We halen een string van de stack en gebruiken $\parsepgmop$ om dit in een
-programma om te zetten. Dit wordt het nieuwe programma om uitgevoerd te worden.
+programma om te zetten. Waarbij we $\parsepgmop$ later in de beschrijving zullen definiëren. Dit wordt het nieuwe programma om uitgevoerd te worden.
 Als de $\stk$ leeg is is deze regel niet toepasbaar, omdat $\pop\stk$ dan niet
 gedefinieerd is. Ook is deze regel niet toepasbaar als de gepopte string zelf
 geen geldig Smurf-programma is, omdat $\parsepgmop$ dan niet gedefinieerd is.
@@ -25,7 +25,7 @@ $$
 	\using{\rexecns}
 	\qquad
 	\text{met\enspace
-		\parbox{36mm}{$(\var,\stk') = \pop{\stk}$,\\
+		\parbox{36mm}{$ \pop{\stk} =(\var,\stk')$,\\
 			$\pgm' = \parsepgm{\var'}$.}
 	}
 \end{prooftree}

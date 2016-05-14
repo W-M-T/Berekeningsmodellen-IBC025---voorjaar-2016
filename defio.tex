@@ -2,8 +2,7 @@
 \subsection{Input en output}
 \label{sec:def:io}
 
-Allereerst definiëren we het type $\Stack{a}$, omdat stacks veel voorkomen in
-Smurf. Een $\Stack{a}$ (lees: een stack van elementen van type $a$) is een
+Allereerst definiëren we het type $\Stack{a}$, omdat stacks we veel met stacks doen in onze semantiek regels. Een $\Stack{a}$ (lees: een stack van elementen van type $a$) is een
 simpel datatype met de volgende syntax:
 
 \begin{grammar}
@@ -19,7 +18,7 @@ Op een stack zijn twee instructies gedefinieerd:
 	\pop{[e:s]} \isdef (e,s) \\
 \end{gather*}
 
-$\popop$ is een partiële functie omdat $\pop\Nil$ niet gedefinieerd is.
+$\popop$ is een partiële functie omdat $\pop\Nil$ niet gebruikt mag worden in onze semantiekregels.
 
 \medskip
 We zullen de input en output beide als $\Stack{\String}$ modelleren. In feite

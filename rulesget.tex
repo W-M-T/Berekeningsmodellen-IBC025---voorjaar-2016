@@ -8,9 +8,7 @@
 \end{quote}
 
 De regel voor dit statement spreekt voor zich. In het geval dat $\stk$ leeg is,
-is $\pop\stk$ niet gedefinieerd en kunnen we de regel dus niet toepassen. Omdat
-$\StmGet$ geen IO gebruikt kunnen we $\ip$, $\ip'$ en $\op$ direct doorgeven.
-
+is $\pop\stk$ niet gedefinieerd en kunnen we de regel dus niet toepassen. 
 $$
 \begin{prooftree}
 	\trans
@@ -22,7 +20,7 @@ $$
 		{\ip'}{\op}{\st}
 	\using{\rgetns}
 	\qquad
-	\text{met $(\var,\stk') = \pop{\stk}$.}
+	\text{met $\pop{\stk}= (\var,\stk')$.}
 \end{prooftree}
 $$
 

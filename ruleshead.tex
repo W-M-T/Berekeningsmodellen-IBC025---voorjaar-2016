@@ -3,7 +3,7 @@
 \label{sec:rules:head}
 
 \begin{quote}
-	h - Pops a string from the stack, and pushes its head, ie the first
+	h - Pops a string from the stack, and pushes its head, that is the first
 	character. This causes an error if used on the empty string.
 \end{quote}
 
@@ -24,7 +24,7 @@ $$
 		{\ip'}{\op}{\st}
 	\using{\rheadns}
 	\qquad
-	\text{met $(c~s,\stk') = \pop{\stk}$.}
+	\text{met $\pop{\stk} = (c~s,\stk')$.}
 \end{prooftree}
 $$
 

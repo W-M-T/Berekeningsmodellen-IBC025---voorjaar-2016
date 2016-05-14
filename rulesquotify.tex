@@ -26,14 +26,14 @@ $$
 		{\ip}{\op}{\st}
 	\using{\rquotifyns}
 	\qquad
-	\text{met $(s, stk') = \pop{\stk}$.}
+	\text{met $ \pop{\stk} = (s, stk')$.}
 \end{prooftree}
 $$
 
 $$
 	\escape{c~s} =
 		\begin{cases}
-			\texttt{\textbackslash}~c~s & \text{als
+			\texttt{\textbackslash}~c~\escape{s} & \text{als
 				$c\in\{\texttt{"},\texttt{\textbackslash},\text{het LF-karakter}\}$} \\
 			c~\escape{s}                & \text{anderszins}
 		\end{cases}

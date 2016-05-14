@@ -6,7 +6,7 @@
 	i - takes a string from user input, and places it on the stack.
 \end{quote}
 
-In het bijzonder dit commando is erg slecht gedefinieerd. Mag deze input
+Dit commando is erg slecht gedefinieerd. Mag deze input
 bijvoorbeeld line feeds bevatten? Een naïeve implementatie die van stdin
 gebruik maakt zou standaard splitsen op line feeds en dit dus niet toestaan.
 Een andere implementatie zou gebruik kunnen maken van grafische prompts waarin
@@ -22,7 +22,7 @@ bestaan.
 We gaan er verder van uit dat de gebruiker zijn programma volledig wil
 uitvoeren en dus voldoende input zal geven, waardoor $\pop\ip$ altijd
 gedefinieerd is. Geeft de gebruiker niet genoeg input, dan hoeven we dus geen
-afleidingsboom maken (en we zullen dit ook onmogelijk maken).
+afleidingsboom te maken (en we zullen dit ook onmogelijk maken).
 
 Dit geeft de volgende regel:
 
@@ -37,7 +37,7 @@ $$
 		{\ip''}{\op}{\st}
 	\using{\rinputns}
 	\qquad
-	\text{met $(\val,\ip')=\pop\ip$.}
+	\text{met $\pop\ip = (\val,\ip')$.}
 \end{prooftree}
 $$
 

@@ -1,4 +1,13 @@
 % vim: set spelllang=nl:
 \section{Analyse}
 \label{sec:analyse}
-Als analyse willen we graag een stuk code bekijken aan de hand van onze semantiek regels. We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij onder verschillende interpetaties van de specificaties een geheel andere uitkomst mogelijk is. Wellicht kunnen we daarna nieuwe specificaties (gebaseerd op de bestaande specificaties) maken die wel eenduidig zijn en aansluiten op onze semantiek regels. 
+Als analyse willen we graag een stuk code dat een string omdraait bekijken aan de hand van onze semantiek regels. Deze code ziet er als volgt uit. 
+	\begin{smurf}
+	\footnotesize
+	"+"i+""p""gtg""gt"i"p"\backslash"\backslash"p\backslash"i\backslash"gh\backslash"o\backslash"g+\backslash"o\backslash"p\backslash"i\backslash"gt\backslash"i\backslash"p\backslash"\backslash\backslash\backslash"+\backslash\backslash\backslash"\backslash\backslash\backslash\backslash\backslash\backslash"\backslash\backslash\backslash"p
+    \backslash"\backslash"i\backslash"gq+\backslash"tg\backslash"+\backslash"i\backslash"gq+\backslash"\backslash\backslash\backslash"i\backslash\backslash\backslash"p\backslash"+\backslash"o\backslash"gq+\backslash"\backslash\backslash\backslash"o\backslash\backslash\backslash"p\backslash"+\backslash"\backslash"gq+\backslash"\backslash"g+\backslash"\backslash"
+    p\backslash"o\backslash"gq\backslash"o\backslash"+\backslash"+\backslash"pgx"""p"\backslash"+\backslash"\backslash"\backslash"p""i"gq+"tg"+"i"gq+"\backslash"i\backslash"p\backslash"\backslash""+""gq+""g+""p
+    """+""i"g+pgx
+	\end{smurf}
+	
+We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij onder verschillende interpetaties van de specificaties een geheel andere uitkomst mogelijk is. Wellicht kunnen we daarna nieuwe specificaties (gebaseerd op de bestaande specificaties) maken die wel eenduidig zijn en aansluiten op onze semantiekregels. 

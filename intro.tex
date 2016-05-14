@@ -11,8 +11,7 @@ Westcott. In de specificatie \cite{safalra} beschrijft hij kort wat Smurf is:
 	The only native data type is the string, and operations are carried out on
 	strings in a forty manner.
 \end{quote}
-We hebben dus te maken met een Forth-achtige programmeertaal. De eigenschappen
-hiervan die we terugzien in Smurf zijn voornamelijk reflection,
+We hebben dus te maken met een Forth-achtige programmeertaal. De eigenschappen die we hiervan terugzien in Smurf zijn voornamelijk reflection,
 stackgeörienteerd en `geconcateneerd programmeren'. We kunnen het programma dus
 dynamisch aanpassen, werken met een stack en schrijven een programma als één
 grote functiecompositie (zonder met functieapplicaties te werken). Voordat we
@@ -47,7 +46,7 @@ illustreren met een voorbeeld:
 	om de variabele `papa' de waarde `smurf' te geven. Hierna is de stack weer
 	leeg. Vervolgens zetten we `papa' op de stack en gebruiken we \smurfinline{g}
 	om het bovenste element als variabele op te zoeken in de variable store en de
-	waarde ervan op de stack te zetten. De stack bestaat nu dus uit het element
+	waarde ervan op de stack te zetten. Hierbij wordt het bovenste element van de stack verwijdert. De stack bestaat nu dus uit het element
 	`smurf'. Met \smurfinline{o} sturen we deze string naar de output.
 \end{exmp}
 
