@@ -6,17 +6,18 @@ Allereerst definiëren we het type $\Stack{a}$, omdat stacks we veel met stacks
 doen in onze semantiek regels. Een $\Stack{a}$ (lees: een stack van elementen
 van type $a$) is een simpel datatype met de volgende syntax:
 
+\def\inbrackets#1{$\mathrm{[}#1\mathrm{]}$}
+\def\bracka{\inbrackets{a}}
 \begin{grammar}
-	<Stack[a]> ::= [<a>:<Stack[a]>] | `Nil'
-	%todo formatting
+	<Stack \bracka> ::= [<a>:<Stack \bracka>] | `Nil'
 \end{grammar}
 
 Op een stack zijn twee instructies gedefinieerd:
 \begin{gather*}
 	\pushop : a \times \Stack{a} \to \Stack{a} \\
-	\push{e}{s} \isdef [e:s] \\[1em]
+	\push{e}{\stk} \isdef [e:\stk] \\[1em]
 	\popop : \Stack{a} \hookrightarrow a \times \Stack{a} \\
-	\pop{[e:s]} \isdef (e,s) \\
+	\pop{[e:\stk]} \isdef (e,\stk) \\
 \end{gather*}
 
 $\popop$ is een partiële functie omdat $\pop\Nil$ niet gebruikt mag worden in

@@ -29,10 +29,10 @@ $\str~k$. Vervolgens definiëren we $\putop:\SynString \times \SynString \times
 waarde en een oude store een nieuwe store oplevert:
 
 $$
-	\put{\var}{\val}{\str} k =
+	\put{\var}{\val}{\str} \var' =
 		\begin{cases}
-			\val   & \text{als $k=\var$} \\
-			\str~k & \text{als $k\ne\var$}
+			\val       & \text{als $\var'=\var$} \\
+			\str~\var' & \text{als $\var'\ne\var$}
 		\end{cases}
 $$
 

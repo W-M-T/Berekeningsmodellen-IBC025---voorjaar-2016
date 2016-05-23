@@ -19,11 +19,11 @@ $$
 \begin{prooftree}
 	\trans
 		{\pgm}{\ip}{(\push{\texttt{"}\escape{s}\texttt{"}}{\stk'}, \str) }
-		{\ip}{\op}{\st}
+		{\ip'}{\op}{\st}
 	\justifies
 	\trans
 		{\StmQuotify:\pgm}{\ip}{(\stk,\str)}
-		{\ip}{\op}{\st}
+		{\ip'}{\op}{\st}
 	\using{\rquotifyns}
 	\qquad
 	\text{met $\pop{\stk} = (s, stk')$.}
