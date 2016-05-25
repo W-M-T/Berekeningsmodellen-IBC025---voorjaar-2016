@@ -8,10 +8,104 @@ de hand van onze semantiekregels. Deze code ziet er als volgt uit:
 	"+"i+ ""p ""gtg ""gt "i"p\\
 	%todo layout, dit loopt over de regel heen (maar geeft wel aan waar de
 	%commando's liggen
-	"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"\\
+	"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\\
+    \textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"\\
 	""p "\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p" "i"gq+ "tg"+ "i"gq+\\
 	"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""+ ""gq+ ""g+ ""p "" "+" "i"g+ pgx
 \end{smurf}
+
+Omgezet naar onze leesbare (hier een relatief begrip) syntax ziet de code er zo uit:
+
+\begin{smurf}
+	\footnotesize
+	
+	\StmPush~"+"~: 
+	\StmInput~: 
+	\StmCat~: 
+	\StmPush~$\lambda$~: 
+	\StmPut~: 
+	\StmPush~$\lambda$~: 
+	\StmGet~: 
+	\StmTail~:\\
+	\StmGet~: 
+	\StmPush~$\lambda$~: 
+	\StmGet~: 
+	\StmTail~: 
+	\StmPush~"i"~: 
+	\StmPut~:\\
+	\StmPush~"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\\
+    \textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"~:\\
+	\StmPush~$\lambda$~: 
+	\StmPut~: 
+	\StmPush~"\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p"~:\\
+	\StmPush~"i"~: 
+	\StmGet~: 
+	\StmQuotify~: 
+	\StmCat~: 
+	\StmPush~"tg"~: 
+	\StmCat~: 
+	\StmPush~"i"~: 
+	\StmGet~: 
+	\StmQuotify~: 
+	\StmCat~: 
+	\StmPush~"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""~: 
+	\StmCat~: 
+	\StmPush~$\lambda$~: 
+	\StmGet~: 
+	\StmQuotify~: 
+	\StmCat~: 
+	\StmPush~$\lambda$~: 
+	\StmGet~: 
+	\StmCat~: 
+	\StmPush~$\lambda$~: 
+	\StmPut~: 
+	\StmPush~$\lambda$~: 
+	\StmPush~"+"~: 
+	\StmPush~"i"~: 
+	\StmGet~: 
+	\StmCat~: 
+	\StmPut~: 
+	\StmGet~: 
+	\StmExec~: 
+    $\lambda$
+
+    
+\end{smurf}
+
+Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait, oftewel:\\
+Er is een derivatieboom voor
+$$
+\trans
+	{Programma}{[s:\Nil]}{(\Nil,\emptystore)}
+	{\Nil}{s^R}{\st}
+$$
+voor alle s, waar
+$$(c~s)^R=s^R c$$
+$$\lambda^R=\lambda$$
+
+Dit bewijzen we door middel van inductie op de lengte van s.
+
+Basisgeval: s = $\lambda$
+$$%Todo fix dit
+\begin{prooftree}
+	\[
+    	\trans
+        	{\pgm'}{\ip}{(\Nil, \emptystore)}
+        	{\ip'}{\op}{\st}
+    	\justifies
+        \trans
+        	{\pgm'}{\ip}{(\Nil, \emptystore)}
+        	{\ip'}{\op}{\st}
+        \using{\rexecns}
+    \]
+	\justifies
+	\trans
+		{programmasymbool}{[\lambda:\Nil]}{(\Nil,\emptystore)}
+		{\Nil}{\lambda}{\st}
+	\using{\rexecns}
+\end{prooftree}
+$$
+
 	
 We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen
 eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij
