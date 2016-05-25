@@ -6,7 +6,7 @@ PDF:=$(addsuffix .pdf,$(DOC))
 
 all: $(PDF)
 
-%.voorstel: %.tex
+voorstel.pdf: voorstel.tex
 	$(TEX) $(TEXOPTS) $(basename $@)
 
 %.pdf: %.tex $(DEP)
