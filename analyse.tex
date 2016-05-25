@@ -6,8 +6,6 @@ de hand van onze semantiekregels. Deze code ziet er als volgt uit:
 \begin{smurf}
 	\footnotesize
 	"+"i+ ""p ""gtg ""gt "i"p\\
-	%todo layout, dit loopt over de regel heen (maar geeft wel aan waar de
-	%commando's liggen
 	"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\\
     \textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"\\
 	""p "\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p" "i"gq+ "tg"+ "i"gq+\\
@@ -89,20 +87,39 @@ Basisgeval: s = $\lambda$
 $$%Todo fix dit
 \begin{prooftree}
 	\[
-    	\trans
-        	{\pgm'}{\ip}{(\Nil, \emptystore)}
-        	{\ip'}{\op}{\st}
+    	\[
+        	\[
+            	\[
+                	test
+                	\justifies
+                    \trans
+        				{\StmPut : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
+        				{\Nil}{\lambda}{\st}
+                    \using{\rputns}
+                \]
+            	\justifies
+        		\trans
+        			{\StmPush~\lambda : \StmPut : ...~}{\Nil}{(["+":\Nil], \emptystore)}
+        			{\Nil}{\lambda}{\st}
+                \using{\rpushns}
+            \]
+        	\justifies
+    		\trans
+        		{\StmCat : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
+        		{\Nil}{\lambda}{\st}
+            \using{\rcatns}
+        \]
     	\justifies
         \trans
-        	{\pgm'}{\ip}{(\Nil, \emptystore)}
-        	{\ip'}{\op}{\st}
-        \using{\rexecns}
+        	{\StmInput : \StmCat : ...~}{[\lambda:\Nil]}{(["+":\Nil], \emptystore)}
+        	{\Nil}{\lambda}{\st}
+        \using{\rinputns}
     \]
 	\justifies
 	\trans
-		{programmasymbool}{[\lambda:\Nil]}{(\Nil,\emptystore)}
+		{\StmPush~"+" : \StmInput : ...~}{[\lambda:\Nil]}{(\Nil,\emptystore)}
 		{\Nil}{\lambda}{\st}
-	\using{\rexecns}
+	\using{\rpushns}
 \end{prooftree}
 $$
 
