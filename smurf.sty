@@ -58,6 +58,9 @@
 % Transitions
 \def\trans#1#2#3#4#5#6{\left\langle#1,#2,#3\right\rangle\to\left(#4,#5,#6\right)}
 
+\def\sostrans#1#2#3#4#5#6#7#8{\left\langle#1,#2,#3,#4\right\rangle\Rightarrow\left(#5,#6,#7,#8\right)}
+\def\sostranseind#1#2#3#4#5#6#7{\left\langle#1,#2,#3,#4\right\rangle\Rightarrow\left(#5,#6,#7\right)}
+
 % Rules
 \def\rule#1#2{[\mbox{#1}_{\mbox{\footnotesize{#2}}}]}
 \def\rlambdans{\rule{$\lambda$}{ns}}
@@ -71,6 +74,9 @@
 \def\rinputns{\rule{input}{ns}}
 \def\routputns{\rule{output}{ns}}
 \def\rexecns{\rule{exec}{ns}}
+\def\rtailsos{\rule{tail}{sos}}
+\def\rcompeensos{\rule{comp1}{sos}}
+\def\rcomptweesos{\rule{comp2}{sos}}
 
 % Common names
 \def\stk{\mathit{stk}}
