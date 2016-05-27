@@ -1,8 +1,10 @@
 % vim: set spelllang=nl:
 \section{Analyse}
 \label{sec:analyse}
+
 Als analyse willen we graag een stuk code dat een string omdraait bekijken aan
 de hand van onze semantiekregels. Deze code ziet er als volgt uit:
+
 \begin{smurf}
 	\footnotesize
 	"+"i+ ""p ""gtg ""gt "i"p\\
@@ -12,8 +14,10 @@ de hand van onze semantiekregels. Deze code ziet er als volgt uit:
 	"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""+ ""gq+ ""g+ ""p "" "+" "i"g+ pgx
 \end{smurf}
 
-Omgezet naar onze leesbare (hier een relatief begrip) syntax ziet de code er zo uit:
+Omgezet naar onze leesbare (hier een relatief begrip) syntax ziet de code er zo
+uit:
 
+%todo leesbaarheid betekent ook witregels waar logisch
 \begin{smurf}
 	\footnotesize
 	
@@ -70,8 +74,8 @@ Omgezet naar onze leesbare (hier een relatief begrip) syntax ziet de code er zo 
     
 \end{smurf}
 
-Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait, oftewel:\\
-Er is een derivatieboom voor
+Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait,
+oftewel: er is een afleidingsboom voor
 $$
 \trans
 	{Programma}{[s:\Nil]}{(\Nil,\emptystore)}
@@ -81,52 +85,49 @@ voor alle s, waar
 $$(c~s)^R=s^R c$$
 $$\lambda^R=\lambda$$
 
-Dit bewijzen we door middel van inductie op de lengte van s.
+\begin{proof}[Bewijs]
+	Met inductie naar de lengte van $s$.
 
-Basisgeval: s = $\lambda$
-$$%Todo fix dit
-\begin{prooftree}
-	\[
-    	\[
-        	\[
-            	\[
-                	test
-                	\justifies
-                    \trans
-        				{\StmPut : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
-        				{\Nil}{\lambda}{\st}
-                    \using{\rputns}
-                \]
-            	\justifies
-        		\trans
-        			{\StmPush~\lambda : \StmPut : ...~}{\Nil}{(["+":\Nil], \emptystore)}
-        			{\Nil}{\lambda}{\st}
-                \using{\rpushns}
-            \]
-        	\justifies
-    		\trans
-        		{\StmCat : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
-        		{\Nil}{\lambda}{\st}
-            \using{\rcatns}
-        \]
-    	\justifies
-        \trans
-        	{\StmInput : \StmCat : ...~}{[\lambda:\Nil]}{(["+":\Nil], \emptystore)}
-        	{\Nil}{\lambda}{\st}
-        \using{\rinputns}
-    \]
-	\justifies
-	\trans
-		{\StmPush~"+" : \StmInput : ...~}{[\lambda:\Nil]}{(\Nil,\emptystore)}
-		{\Nil}{\lambda}{\st}
-	\using{\rpushns}
-\end{prooftree}
-$$
+	Basisgeval: $s=\lambda$.
 
-	
-We willen hierbij een stuk code onderzoeken dat volgens de specificaties geen
-eenduidige uitkomst heeft. Het liefst willen we eens stuk code bedenken waarbij
-onder verschillende interpretaties van de specificaties een geheel andere
-uitkomst mogelijk is. Wellicht kunnen we daarna nieuwe specificaties (gebaseerd
-op de bestaande specificaties) maken die wel eenduidig zijn en aansluiten op
-onze semantiekregels.
+	$$%Todo fix dit
+	\begin{prooftree}
+		\[
+			\[
+				\[
+					\[
+						\vdots %todo afmaken
+						\justifies
+						\trans
+							{\StmPut : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
+							{\Nil}{\lambda}{\st}
+						\using{\rputns}
+					\]
+					\justifies
+					\trans
+						{\StmPush~\lambda : \StmPut : ...~}{\Nil}{(["+":\Nil], \emptystore)}
+						{\Nil}{\lambda}{\st}
+					\using{\rpushns}
+				\]
+				\justifies
+				\trans
+					{\StmCat : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
+					{\Nil}{\lambda}{\st}
+				\using{\rcatns}
+			\]
+			\justifies
+			\trans
+				{\StmInput : \StmCat : ...~}{[\lambda:\Nil]}{(["+":\Nil], \emptystore)}
+				{\Nil}{\lambda}{\st}
+			\using{\rinputns}
+		\]
+		\justifies
+		\trans
+			{\StmPush~"+" : \StmInput : ...~}{[\lambda:\Nil]}{(\Nil,\emptystore)}
+			{\Nil}{\lambda}{\st}
+		\using{\rpushns}
+	\end{prooftree}
+	$$
+
+	%todo afmaken
+\end{proof}

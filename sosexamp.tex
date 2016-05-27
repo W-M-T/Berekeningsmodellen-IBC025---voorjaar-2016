@@ -1,54 +1,61 @@
-\subsection{Smurf in structurele operationele semantiek}
-We willen ook nog graag laten zien hoe de definities van Smurf eruit zien als je de structurele operationele semantiek gebruikt. In principe maakt het voor de analyse van Smurf niet uit of je natuurlijke semantiek gebruikt of structurele operationele semantiek. Omdat natuurlijke semantiek en structurele operationele semantiek equivalent zijn wanneer de regels goed gedefineerd zijn. Wij hadden een voorkeur om natuurlijke semantiek te gebruiken omdat we hier meer bekend mee zijn. Echter willen we ook nog graag laten zien hoe het eruit zou zien als je structurele operationele semantiek zou gebruiken. 
+% vim:set spelllang=nl:
+\section{Smurf in structurele operationele semantiek}
+\label{sec:sos}
+We willen ook nog graag laten zien hoe de definities van Smurf eruit zien als
+je de structurele operationele semantiek gebruikt. In principe maakt het voor
+de analyse van Smurf niet uit of je natuurlijke semantiek gebruikt of
+structurele operationele semantiek. Omdat natuurlijke semantiek en structurele
+operationele semantiek equivalent zijn wanneer de regels goed gedefinieerd
+zijn. Wij hadden een voorkeur om natuurlijke semantiek te gebruiken omdat we
+hier meer bekend mee zijn. Echter willen we ook nog graag laten zien hoe het
+eruit zou zien als je structurele operationele semantiek zou gebruiken.
 
-We gebruiken hier in plaats van de lambda regel twee compositie regels om hiervan ook het verschil aan te geven. 
+We gebruiken hier in plaats van de labdaregel twee compositieregels om hiervan
+ook het verschil aan te geven.
 
-De twee composities regels zijn als volgt:
-\medskip
-\medskip 
+De twee compositieregels zijn als volgt:
+
 $$
 \begin{prooftree}
 	\sostrans
-		{\pgm1}{\ip}{\op}{(\stk, \str)}
-		{\pgm1'}{\ip'}{\op'}{(\stk', \str')}
+		{\stm}{\ip}{\op}{(\stk, \str)}
+		{\pgm'}{\ip'}{\op'}{(\stk', \str')}
 	\justifies
 	\sostrans
-		{\pgm1:\pgm2}{\ip}{\op}{(\stk,\str)}
-		{\pgm1':\pgm2}{\ip'}{\op'}{(\stk',\str')}
+		{\stm:\pgm}{\ip}{\op}{(\stk,\str)}
+		{\pgm'}{\ip'}{\op'}{(\stk',\str')}
 	\using{\rcompeensos}
 	\qquad
 \end{prooftree}
 $$
+
 \medskip
-\medskip 
 $$
 \begin{prooftree}
 	\sostranseind
-		{\pgm1}{\ip}{\op}{(\stk, \str)}
+		{\stm}{\ip}{\op}{(\stk, \str)}
 		{\ip'}{\op'}{(\stk', \str')}
 	\justifies
 	\sostrans
-		{\pgm1:\pgm2}{\ip}{\op}{(\stk,\str)}
-		{\pgm2}{\ip'}{\op'}{(\stk',\str')}
+		{\stm:\pgm}{\ip}{\op}{(\stk,\str)}
+		{\pgm}{\ip'}{\op'}{(\stk',\str')}
 	\using{\rcomptweesos}
 	\qquad
 \end{prooftree}
 $$
 
-\medskip
-\medskip 
-\medskip
-
-De tailregel zal in de structurele operationele semantiek als volgt zijn: 
+\bigskip
+De regel voor $\StmTail$ zou in de structurele operationele semantiek als volgt
+zijn:
 
 $$
 \begin{prooftree}
-    \axjustifies
-    \sostranseind
-        {\StmTail}{\ip}{\op}{(\stk,\str)}
-        {\ip}{\op}{(\push{s}{\stk'}, \str)}
-    \using{\rtailsos}
-    \qquad
-    \text{met $ \pop{\stk} = (c~s,\stk') $.}
+	\axjustifies
+	\sostranseind
+		{\StmTail}{\ip}{\op}{(\stk,\str)}
+		{\ip}{\op}{(\push{s}{\stk'}, \str)}
+	\using{\rtailsos}
+	\qquad
+	\text{met $\pop{\stk} = (c~s,\stk')$.}
 \end{prooftree}
 $$
