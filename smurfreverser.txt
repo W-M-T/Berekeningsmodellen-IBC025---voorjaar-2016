@@ -1,0 +1,10 @@
+@By Ward M Theunisse
+==========================
+i "input" p
+"input" g q
+"
+\"\"\"\\\"program\\\"p\\\"grow\\\"p\\\"shrink\\\"p\\\"shrink\\\"gh\\\"grow\\\"g+\\\"grow\\\"p\\\"shrink\\\"gt\\\"shrink\\\"p\\\"shrink\\\"g\\\"grow\\\"gq\\\"o\\\"+\\\"shrink\\\"gq\\\"grow\\\"gq\\\"program\\\"gq++\\\"program\\\"g+\\\"shrink\\\"gp\\\"\\\"pgx\"\"program\"p\"grow\"p\"shrink\"p\"shrink\"gh\"grow\"g+\"grow\"p\"shrink\"gt\"shrink\"p\"shrink\"g\"grow\"gq\"o\"+\"shrink\"gq\"grow\"gq\"program\"gq++\"program\"g+\"shrink\"gp\"\"pgx
+" +
+"input" g p
+"\"Leeg\"o" "" p
+"input" g g x
