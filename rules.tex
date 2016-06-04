@@ -8,8 +8,8 @@ geldt dat als elementen van de stack worden gebruikt in die regel, de stack
 niet leeg mag zijn voor het uitvoeren van de regel. %todo waarom deze keuze?
 
 De documentatie \cite{safalra} beschrijft niet wat er gebeurt wanneer er niet
-genoeg argumenten op de stack staan om een bepaalde instructie uit te voeren.
-We kiezen ervoor om het in zulk soort gevallen onmogelijk te maken een
+genoeg argumenten op de stack staan om een bepaalde instructie uit te voeren. In de \texttt{Perl}-interpreter van de taal is ervoor gekozen om een dergelijk programma abrupt te laten termineren met een foutmelding.
+Wij kiezen er echter voor om het in zulk soort gevallen onmogelijk te maken een
 afleidingsboom te maken (in tegenstelling tot bijvoorbeeld een errorstatus aan
 de rechterkant van transities toe te voegen), omdat dit het redeneren over
 Smurfprogramma's makkelijker zal maken.
