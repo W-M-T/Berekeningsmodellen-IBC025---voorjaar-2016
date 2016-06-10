@@ -1,0 +1,123 @@
+% vim: set spelllang=nl:
+\section{CleanSmurf}
+\label{sec:cleansmurf}
+
+Semantiekregels vertalen zich uiterst gemakkelijk naar een implementatie van
+een interpreter in een functionele taal. \emph{CleanSmurf}~\cite{cleansmurf} is
+een interpreter voor Smurf, geschreven in Clean, dat onze semantiekregels
+volgt. Omdat het de semantiekregels volgt, was het niet lastig dit uit te
+breiden naar een programma dat een afleidingsboom genereert. In dit hoofdstuk
+beschrijven we de globale opzet van dit programma.
+
+\subsection{Types}
+\label{sec:cleansmurf:types}
+Het programma houdt de expressieve syntax uit \autoref{sec:def:syn} aan. Het
+type \CI{Stm} is dus:
+
+\lstinputlisting[firstline=15,lastline=20]{CleanSmurf/Smurf.dcl}
+
+We gebruiken lijsten als stacks en implementeren de store met behulp van een
+tabel van naam-waarde paren:
+
+\lstinputlisting[firstline=22,lastline=27]{CleanSmurf/Smurf.dcl}
+
+Ten slotte definiëren we transities. Aangezien alle semantiekregels hooguit één
+premisse hebben, kunnen we een afleidingsboom als lijstje transities zien:
+
+\lstinputlisting[firstline=35,lastline=36]{CleanSmurf/Smurf.dcl}
+
+Met deze definities kunnen we een \CI{step :: Program State -> Maybe (Program,
+State)} definiëren. Dit komt bijna overeen met de structuur van transities. We
+moeten een \CI{Program} teruggeven, omdat we slechts één stap zetten. Wat dit
+betreft lijken de regels van \emph{CleanSmurf} meer op regels in structurele
+operationele semantiek. We hebben al laten zien dat deze regels erg veel lijken
+op die in natuurlijke semantiek.
+
+Het type van \CI{step} neemt nog geen Input/Output mee. We maken er een
+overloaded functie van, zodat hij voor meerdere inputmethodes kan worden
+gebruikt. Het uiteindelijke type is:
+
+\lstinputlisting[firstline=56,lastline=56]{CleanSmurf/Smurf.dcl}
+
+Hoe dit precies werkt is niet belangrijk voor de beschrijving hier. Het derde
+argument, van type \CI{io}, is de `IO-toestand'. Het vierde argument, van type
+\CI{IO io}, omvat een input-functie die strings oplevert (gegeven de
+IO-toestand) en een output-functie die strings opneemt (in de IO-toestand).
+
+\medskip
+Verder definiëren we een aantal hulpfuncties:
+
+\lstinputlisting[firstline=232,lastline=245]{CleanSmurf/Smurf.icl}
+
+De partiële functies zijn hier gesimuleerd met het \CI{Maybe}-type. Dit laat
+ons monadische operatoren gebruiken in het uitwerken van de interpreter.
+
+\subsection{Semantiekregels}
+\label{sec:cleansmurf:regels}
+Iedere semantiekregel vertaalt min of meer direct naar een functiealternatief
+voor \CI{step}. Echter, omdat we geen \CI{run}- maar een \CI{step}-functie
+schrijven, moeten we compositie expliciet maken.
+
+Als voorbeeld zullen we de implementatie van $\StmHead$ bekijken. Aangezien
+\CI{pop} en \CI{head} allebei een \CI{Maybe} opleveren, kunnen we de resultaten
+gemakkelijk binden. Vervolgens wordt de stack geüpdate en wordt de rest van het
+programma (\CI{p}) teruggegeven. De IO-toestand wordt zonder gebruik
+doorgegeven. Het vierde argument hebben we niet nodig en kan dus worden
+genegeerd.
+
+\lstinputlisting[firstline=213,lastline=215]{CleanSmurf/Smurf.icl}
+
+Andere regels, voor $\StmPush$, $\StmTail$, $\StmCat$, $\StmQuotify$ en ook
+$\StmPut$ en $\StmGet$ gaan op soortgelijke wijze. Ook $\StmInput$ en
+$\StmOutput$ kunnen op dezelfde manier worden geschreven, afgezien van het feit
+dat de IO-toestand en -functies gebruikt moeten worden.
+
+In het geval van $\StmExec$ kunnen we handig gebruik maken van het feit dat
+\CI{step} een nieuw programma oplevert:
+
+\lstinputlisting[firstline=228,lastline=230]{CleanSmurf/Smurf.icl}
+
+Zoals te zien wordt een nieuwe toestand gemaakt (\CI{zero}) waarin dit nieuwe
+programma (\CI{p}) wordt uitgevoerd. De compositie \CI{parse o fromString}
+parseert een String van de stack en levert een \CI{Maybe Program} op. Dus ook
+deze wat afwijkende regel levert geen problemen op.
+
+\subsection{Afleidingsbomen}
+Door herhaaldelijk gebruik te maken van \CI{step} kunnen we gemakkelijk een
+afleidingsboom genereren. We maken hierbij gebruik van een aantal handige
+eigenschappen van afleidingsbomen voor Smurf:
+
+\begin{itemize}
+	\item Alle semantiekregels hebben ten hoogste één premisse, waardoor we een
+		boom als lijst van transities kunnen representeren.
+	\item Ieder commando heeft precies één regel. Hierdoor is aan het eerste
+		statement van een programma te herkennen welke regel wordt toegepast. Dit
+		hoeven we dus niet in de types \CI{Transition} en \CI{DerivationTree} op te
+		slaan.
+	\item Doordat condities van de semantiekregels enkel afhangen van de
+		linkerkant van de conclusie (het programma, de input en de toestand), en
+		deze informatie beschikbaar is op het moment dat de boom gemaakt wordt,
+		hoeven we geen backtracking toe te passen. Wanneer het niet lukt de regel
+		die bij het eerste commando van het programma hoort toe te passen, weten we
+		zeker dat er geen afleidingsboom bestaat.
+\end{itemize}
+
+De functie \CI{tree} is als volgt geïmplementeerd:
+
+\lstinputlisting[firstline=274]{CleanSmurf/Smurf.icl}
+
+Bij het genereren van bomen leggen we de input van te voren vast in een lijst.
+We slaan de output op in een andere lijst. Dit is wat het type \CI{ListIO}
+inhoudt --- de implementatie hiervan is irrelevant hier.
+
+Het eerste dat \CI{tree} doet is het berekenen van de volgende stap. Lukt dat
+niet (\CI{isNothing mbPgmSt}), dan kunnen we ook geen boom maken.
+
+Omdat \CI{step} voor een leeg programma een nieuw leeg programma oplevert,
+moeten we in deze functie controleren of het nieuwe programma leeg is. Is dit
+het geval, dan zetten we de $\lambda$-regel zelf in de boom als \CI{([],
+io.input, st) --> (io.input, [], st)}.
+
+Is dit niet het geval, dan maken we recursief een boom voor de premisse
+(\CI{tree pgm st io iof}). Lukt dit niet, dan kunnen we geen boom maken.
+Anders, dan voegen we de boom en de transitie gevonden met \CI{step} samen.
