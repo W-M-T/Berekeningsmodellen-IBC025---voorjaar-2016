@@ -1,17 +1,26 @@
 % vim:set spelllang=nl:
 \section{Smurf in structurele operationele semantiek}
 \label{sec:sos}
-We willen ook nog graag laten zien hoe de definities van Smurf eruit zien als
+We willen ook laten zien hoe de definities van Smurf eruit zien als
 je de structurele operationele semantiek gebruikt. In principe maakt het voor
 de analyse van Smurf niet uit of je natuurlijke semantiek gebruikt of
-structurele operationele semantiek. Omdat natuurlijke semantiek en structurele
-operationele semantiek equivalent zijn wanneer de regels goed gedefinieerd
-zijn. Wij hadden een voorkeur om natuurlijke semantiek te gebruiken omdat we
+structurele operationele semantiek. Wij hadden een voorkeur om natuurlijke semantiek te gebruiken omdat we
 hier meer bekend mee zijn. Echter willen we ook nog graag laten zien hoe het
 eruit zou zien als je structurele operationele semantiek zou gebruiken.
 
-We gebruiken hier in plaats van de $\lambda$-regel twee compositieregels om
-hiervan ook het verschil aan te geven.
+Bij het definiëren van de structurele operationele semantiek van Smurf zullen we de
+verzameling van transities als een relatie $\Rightarrow$ tussen
+$\Pgm\times\Input\times\Output\times\State$ en $\Pgm\times\Input\times\Output\times\State$ beschouwen.
+Dit schrijven we als
+$$\sostrans{\stm:\pgm}{\ip}{\op}{\st}{\pgm}{\ip'}{\op'}{\st'}$$
+en lezen we als
+\begin{quote}
+	``het programma $\stm:\pgm$ zal in toestand $\st$ gegeven input $\ip$ en output $\op$ leiden tot
+	toestand $\st'$, met output $\op'$ waarbij $\ip'$ gelijk is aan $\ip$ zonder
+	de geconsumeerde input.''
+\end{quote}
+
+ Je kunt de structurele operationele semantiek zoals bij de natuurlijke semantiek definiëren aan de hand van de  $\lambda$-regel maar om juist het verschil aan te geven met als je gebruik maakt van compositieregels, hebben wij ervoor gekozen om de structurele operationele semantiek te definiëren gebruik makende van compositieregels. 
 
 De twee compositieregels zijn als volgt:
 
@@ -59,3 +68,5 @@ $$
 	\text{met $\pop{\stk} = (c~s,\stk')$.}
 \end{prooftree}
 $$
+
+De andere regels zoals head en exec zullen we hier niet verder uitwerken omdat deze op een soortgelijke wijzen worden gemaakt. 
