@@ -1,3 +1,6 @@
 [submodule "CleanSmurf"]
 	path = CleanSmurf
 	url = https://github.com/camilstaps/CleanSmurf
+[submodule "CleanSmurfProver"]
+	path = CleanSmurfProver
+	url = https://github.com/camilstaps/CleanSmurf
