@@ -22,23 +22,8 @@ en lezen we als
 
  Je kunt de structurele operationele semantiek zoals bij de natuurlijke semantiek definiëren aan de hand van de  $\lambda$-regel maar om juist het verschil aan te geven met als je gebruik maakt van compositieregels, hebben wij ervoor gekozen om de structurele operationele semantiek te definiëren gebruik makende van compositieregels. 
 
-De twee compositieregels zijn als volgt:
+De compositieregel is dan als volgt:
 
-$$
-\begin{prooftree}
-	\sostrans
-		{\stm}{\ip}{\op}{(\stk, \str)}
-		{\pgm'}{\ip'}{\op'}{(\stk', \str')}
-	\justifies
-	\sostrans
-		{\stm:\pgm}{\ip}{\op}{(\stk,\str)}
-		{\pgm'}{\ip'}{\op'}{(\stk',\str')}
-	\using{\rcompeensos}
-	\qquad
-\end{prooftree}
-$$
-
-\medskip
 $$
 \begin{prooftree}
 	\sostranseind
@@ -48,8 +33,23 @@ $$
 	\sostrans
 		{\stm:\pgm}{\ip}{\op}{(\stk,\str)}
 		{\pgm}{\ip'}{\op'}{(\stk',\str')}
-	\using{\rcomptweesos}
+	\using{\rcompeensos}
 	\qquad
+\end{prooftree}
+$$
+
+\bigskip
+
+De regel voor $\StmExec$ zou in de structurele operationele semantiek als volgt zijn: 
+$$
+\begin{prooftree}
+\axjustifies
+	\sostrans
+		{\StmExec:\pgm}{\ip}{\op}{(\stk,\str)}
+		{\pgm'}{\ip'}{\op'}{(\stk',\str')}
+	\using{\rexecsos}
+	\qquad
+		\text{met $\pop{\stk} = ( \pgm', \stk'')$.}
 \end{prooftree}
 $$
 
