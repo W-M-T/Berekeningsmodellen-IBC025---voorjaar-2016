@@ -10,15 +10,13 @@ eruit zou zien als je structurele operationele semantiek zou gebruiken.
 
 Bij het definiëren van de structurele operationele semantiek van Smurf zullen we de
 verzameling van transities als een relatie $\Rightarrow$ tussen
-$\Pgm\times\Input\times\Output\times\State$ en $\Pgm\times\Input\times\Output\times\State$ beschouwen.
+$\Pgm\times\Input\times\Output\times\State$ en $\Gamma$ beschouwen. Waarbij $\Gamma$ óf  $\Pgm\times\Input\times\Output\times\State$ óf $\Input\times\Output\times\State$ is. 
 Dit schrijven we als
-$$\sostrans{\stm:\pgm}{\ip}{\op}{\st}{\pgm}{\ip'}{\op'}{\st'}$$
-en lezen we als
-\begin{quote}
-	``het programma $\stm:\pgm$ zal in toestand $\st$ gegeven input $\ip$ en output $\op$ leiden tot
-	toestand $\st'$, met output $\op'$ waarbij $\ip'$ gelijk is aan $\ip$ zonder
-	de geconsumeerde input.''
-\end{quote}
+$$\sostransgamma{\stm:\pgm}{\ip}{\op}{\st}{\gamma}	\qquad \text{met\enspace
+	\parbox{36mm}{ $\gamma = (\pgm',\ip',\op',\st')$ of \\  $\gamma = (\ip', \op',\st' )$}}$$
+
+De reden dat we hier spreken over $\pgm'$ is omdat de exec regel het programma dat je gaat uitvoeren verandert. In de meeste gevallen zal $\pgm$ = $\pgm'$ gelden maar dat hoeft dus niet. 
+\medskip
 
  Je kunt de structurele operationele semantiek zoals bij de natuurlijke semantiek definiëren aan de hand van de  $\lambda$-regel maar om juist het verschil aan te geven met als je gebruik maakt van compositieregels, hebben wij ervoor gekozen om de structurele operationele semantiek te definiëren gebruik makende van compositieregels. 
 

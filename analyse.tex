@@ -6,79 +6,34 @@ Omdat de transities van onze natuurlijke semantiek input meenemen, kunnen we
 alleen een afleidingsboom maken voor een programma \emph{met} een bepaalde
 input. Het is dus niet triviaal mogelijk een afleidingsboom te maken voor willekeurige
 input. In deze sectie willen we laten zien hoe het toch mogelijk is een bewijs
-te leveren over een programma met een willekeurige input, door gebruik te maken
-van inductie naar de lengte van de input. We doen dit aan de hand van een
-programma dat een string omdraait~\cite{esolang:prog}:
-
+te leveren over een programma met een willekeurige input string, door gebruik te maken
+van inductie naar de lengte van de input string. We hadden hiervoor initieel een programma op het internet \cite{esolang:prog} gevonden welke een string zou moeten omdraaien. Echter werkte dit programma niet naar behoren. Het werkte namelijk niet voor strings met lengte een. Daarom hebben we zelf een programma geschreven voor het omdraaien van een string. Dit programma ziet er als volgt uit: 
 \begin{smurf}
-	\footnotesize
-	"+"i+ ""p ""gtg ""gt "i"p\\
-	"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\\
-    \textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"\\
-	""p "\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p" "i"gq+ "tg"+ "i"gq+\\
-	"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""+ ""gq+ ""g+ ""p "" "+" "i"g+ pgx
+\footnotesize
+i "input" p
+"input" g q
+"\textbackslash{}"\textbackslash{}"\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"u\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gh\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"g+\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gt 
+
+\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"g\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"gq\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gq\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"gq\textbackslash{}\textbackslash{}\textbackslash{}"u\textbackslash{}\textbackslash{}\textbackslash{}"gq++\textbackslash{}\textbackslash{}\textbackslash{}"u\textbackslash{}\textbackslash{}\textbackslash{}"g+
+
+\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gp\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"pgx\textbackslash{}"\textbackslash{}"u\textbackslash{}"p\textbackslash{}"v\textbackslash{}"p\textbackslash{}"w\textbackslash{}"p\textbackslash{}"w\textbackslash{}"gh\textbackslash{}"v\textbackslash{}"g+\textbackslash{}"v\textbackslash{}"p\textbackslash{}"w\textbackslash{}"gt\textbackslash{}"w\textbackslash{}"p\textbackslash{}"w\textbackslash{}"g\textbackslash{}"v\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+
+
+\textbackslash{}"w\textbackslash{}"gq\textbackslash{}"v\textbackslash{}"gq\textbackslash{}"u\textbackslash{}"gq++\textbackslash{}"u\textbackslash{}"g+\textbackslash{}"w\textbackslash{}"gp\textbackslash{}"\textbackslash{}"pgx"
+\\
++
+"input" g p
+"\textbackslash{}"\textbackslash{}"o" "" p
+"input" g g x
 \end{smurf}
 
-Omgezet naar onze leesbare (hier een relatief begrip) syntax ziet de code er zo
-uit:
+Het bovenstaande programma is in het format van smurf maar echter is dit programma niet zo leesbaar. 
+Daarom hebben we getracht het programma iets leesbaardere te maken: 
 
-%todo leesbaarheid betekent ook witregels waar logisch
-\begin{smurf}
-	\footnotesize
-	
-	\StmPush~"+"~: 
-	\StmInput~: 
-	\StmCat~: 
-	\StmPush~$\lambda$~: 
-	\StmPut~: 
-	\StmPush~$\lambda$~: 
-	\StmGet~: 
-	\StmTail~:\\
-	\StmGet~: 
-	\StmPush~$\lambda$~: 
-	\StmGet~: 
-	\StmTail~: 
-	\StmPush~"i"~: 
-	\StmPut~:\\
-	\StmPush~"\textbackslash{}"\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gh\textbackslash{}"o\textbackslash{}"g+\textbackslash{}"o\textbackslash{}"p\textbackslash{}"i\textbackslash{}"gt\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"+\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"tg\textbackslash{}"+\textbackslash{}"i\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\\
-    \textbackslash{}"i\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"o\textbackslash{}"gq+\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"o\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}"+\textbackslash{}"\textbackslash{}"gq+\textbackslash{}"\textbackslash{}"g+\textbackslash{}"\textbackslash{}"p\textbackslash{}"o\textbackslash{}"gq\textbackslash{}"o\textbackslash{}"+\textbackslash{}"+\textbackslash{}"pgx"~:\\
-	\StmPush~$\lambda$~: 
-	\StmPut~: 
-	\StmPush~"\textbackslash{}"+\textbackslash{}"\textbackslash{}"\textbackslash{}"p"~:\\
-	\StmPush~"i"~: 
-	\StmGet~: 
-	\StmQuotify~: 
-	\StmCat~: 
-	\StmPush~"tg"~: 
-	\StmCat~: 
-	\StmPush~"i"~: 
-	\StmGet~: 
-	\StmQuotify~: 
-	\StmCat~: 
-	\StmPush~"\textbackslash{}"i\textbackslash{}"p\textbackslash{}"\textbackslash{}""~: 
-	\StmCat~: 
-	\StmPush~$\lambda$~: 
-	\StmGet~: 
-	\StmQuotify~: 
-	\StmCat~: 
-	\StmPush~$\lambda$~: 
-	\StmGet~: 
-	\StmCat~: 
-	\StmPush~$\lambda$~: 
-	\StmPut~: 
-	\StmPush~$\lambda$~: 
-	\StmPush~"+"~: 
-	\StmPush~"i"~: 
-	\StmGet~: 
-	\StmCat~: 
-	\StmPut~: 
-	\StmGet~: 
-	\StmExec~: 
-    $\lambda$
+\input{reverse2}
 
-    
-\end{smurf}
+\input{explanation}
 
+\subsection{bewijs} 
 Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait,
 oftewel: er is een afleidingsboom voor
 $$
