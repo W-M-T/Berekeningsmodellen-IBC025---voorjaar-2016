@@ -20,8 +20,12 @@ Op een stack zijn twee instructies gedefinieerd:
 	\pop{[e:\stk]} \isdef (e,\stk) \\
 \end{gather*}
 
-In de documentatie \cite{safalra} wordt niet beschreven wat er gebeurt wanneer een $\popop$ wordt uitgevoerd op een lege stack. In de \texttt{Perl}-interpreter van de taal wordt ervoor gekozen om het programma abrupt te termineren met een error. Wij hebben ervoor gekozen om $\popop$ als een partiële functie te zien waar $\pop\Nil$ ongedefinieerd blijft zodat er geen afleidingsbomen bestaan voor programma's waar dit gebeurt.
-
+In de documentatie \cite{safalra} wordt niet beschreven wat er gebeurt wanneer
+een $\popop$ wordt uitgevoerd op een lege stack. In de
+\emph{Perl}-interpreter van de taal wordt ervoor gekozen om het programma
+abrupt te termineren met een error. Wij hebben ervoor gekozen om $\popop$ als
+een partiële functie te zien waar $\pop\Nil$ ongedefinieerd blijft zodat er
+geen afleidingsbomen bestaan voor programma's waar dit gebeurt.
 
 \medskip
 We zullen de input en output beide als $\Stack{\String}$ modelleren. In feite
@@ -29,7 +33,7 @@ zal zelfs blijken dat we op $\Input$ de operatie $\pushop$ niet nodig hebben,
 en op $\Output$ de operatie $\popop$ niet zullen gebruiken. Informeel
 beschouwen we $\Input$ als een `bron' van $\String$s en $\Output$ als een `put'
 van $\String$s. Formeel:
+
 \begin{align*}
 	\Input &\isdef \Stack{\String} \\ \Output &\isdef \Stack{\String}
 \end{align*}
-
