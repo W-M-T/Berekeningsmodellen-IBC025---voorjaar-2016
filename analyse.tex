@@ -11,6 +11,7 @@ van inductie naar de lengte van de input string. We hadden hiervoor initieel een
 \begin{smurf}
 \footnotesize
 i "input" p
+"input" g
 "input" g q
 "\textbackslash{}"\textbackslash{}"\textbackslash{}"\textbackslash{}\textbackslash{}\textbackslash{}"u\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gh\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"g+\textbackslash{}\textbackslash{}\textbackslash{}"v\textbackslash{}\textbackslash{}\textbackslash{}"p\textbackslash{}\textbackslash{}\textbackslash{}"w\textbackslash{}\textbackslash{}\textbackslash{}"gt 
 
@@ -23,7 +24,7 @@ i "input" p
 +
 "input" g p
 "\textbackslash{}"\textbackslash{}"o" "" p
-"input" g g x
+g x
 \end{smurf}
 
 Het bovenstaande programma is in het format van smurf maar echter is dit programma niet zo leesbaar. 
@@ -50,55 +51,5 @@ $$\lambda^R=\lambda$$
 
 	Basisgeval: $s=\lambda$.
 
-	$$%Todo fix dit
-	\begin{prooftree}
-		\[
-			\[
-				\[
-					\[
-						\vdots %todo afmaken
-						\justifies
-						\trans
-							{\StmPut : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
-							{\Nil}{\lambda}{\st}
-						\using{\rputns}
-					\]
-					\justifies
-					\trans
-						{\StmPush~\lambda : \StmPut : ...~}{\Nil}{(["+":\Nil], \emptystore)}
-						{\Nil}{\lambda}{\st}
-					\using{\rpushns}
-				\]
-				\justifies
-				\trans
-					{\StmCat : \StmPush~\lambda : ...~}{\Nil}{([\lambda:["+":\Nil]], \emptystore)}
-					{\Nil}{\lambda}{\st}
-				\using{\rcatns}
-			\]
-			\justifies
-			\trans
-				{\StmInput : \StmCat : ...~}{[\lambda:\Nil]}{(["+":\Nil], \emptystore)}
-				{\Nil}{\lambda}{\st}
-			\using{\rinputns}
-		\]
-		\justifies
-		\trans
-			{\StmPush~"+" : \StmInput : ...~}{[\lambda:\Nil]}{(\Nil,\emptystore)}
-			{\Nil}{\lambda}{\st}
-		\using{\rpushns}
-	\end{prooftree}
-	$$
-
-	%FIXME
-	NB: dit bewijs is overduidelijk niet af. We gaan de afleidingsboom
-	automatisch genereren, dit is nog maar een begin. Het programma, dat van de
-	Esolang wiki afkomstig is~\cite{esolang:prog}, werkt helaas niet voor strings
-	met minder dan twee karakters. In het geval van de lege string wordt geen
-	output gegeven; in het geval van een string van één karakter crasht het
-	programma. We zullen ofwel dit programma aanpassen, zodat het wel werkt,
-	ofwel een ander programma bekijken. In het laatste geval zullen we nog steeds
-	een programma nemen waar we iets inductief over kunnen bewijzen, zoals het
-	laatste voorbeeld uit \autoref{sec:intro:exmp}.
-
-	%todo afmaken
+	
 \end{proof}
