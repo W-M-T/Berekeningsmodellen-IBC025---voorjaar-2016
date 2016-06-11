@@ -4,10 +4,16 @@
 
 Omdat de transities van onze natuurlijke semantiek input meenemen, kunnen we
 alleen een afleidingsboom maken voor een programma \emph{met} een bepaalde
-input. Het is dus niet triviaal mogelijk een afleidingsboom te maken voor willekeurige
-input. In deze sectie willen we laten zien hoe het toch mogelijk is een bewijs
-te leveren over een programma met een willekeurige input string, door gebruik te maken
-van inductie naar de lengte van de input string. We hadden hiervoor initieel een programma op het internet \cite{esolang:prog} gevonden welke een string zou moeten omdraaien. Echter werkte dit programma niet naar behoren. Het werkte namelijk niet voor strings met lengte een. Daarom hebben we zelf een programma geschreven voor het omdraaien van een string. Dit programma ziet er als volgt uit: 
+input. Het is dus niet triviaal mogelijk een afleidingsboom te maken voor
+willekeurige input. In deze sectie willen we laten zien hoe het toch mogelijk
+is een bewijs te leveren over een programma met een willekeurige input string,
+door gebruik te maken van inductie naar de lengte van de input string. We
+hadden hiervoor initieel een programma op de Esolang wiki gevonden dat een
+string zou omdraaien~\cite{esolang:prog}. Dit programma werkte echter niet naar
+behoren: het werkte niet voor strings met lengte $1$. Daarom hebben we zelf een
+programma geschreven voor het omdraaien van een string. Dit programma ziet er
+als volgt uit:
+
 \begin{smurf}
 \footnotesize
 i "input" p
@@ -27,8 +33,8 @@ i "input" p
 g x
 \end{smurf}
 
-Het bovenstaande programma is in het format van smurf maar echter is dit programma niet zo leesbaar. 
-Daarom hebben we getracht het programma iets leesbaardere te maken: 
+Het bovenstaande programma is correcte Smurfsyntax en hierdoor niet erg
+leesbaar. We hebben daarom getracht het programma iets leesbaarder te maken: 
 
 \input{reverse2}
 
