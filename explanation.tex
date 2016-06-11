@@ -10,49 +10,8 @@ Ook zullen we het programma opdelen in twee aparte programma's die elk apart bek
 \medskip
 
 \subsubsection{Het buitenste programma}
-Het buitenste programma test of we te maken hebben met de lege string als inputstring. Als dit het geval is geef je de lege string als output. Anders ga je het recursieve subprogramma in, dat alleen voor strings van lengte n + 1 gedefiniëerd is.
-Omdat Smurf geen statement heeft om waarden te testen moeten we hier op een slimme manier omgaan met het feit dat waarden ook als variabelenaam kunnen worden gebruikt. Eerst schrijven we het recursieve programma dat we moeten aanroepen als de inputstring niet leeg is naar de variabele met als naam de inputstring zelf. Hierna schrijven we het programma dat moet worden uitgevoerd als de string leeg is (het outputten van de lege string) naar de variabele met als naam de lege string. Als de inputstring leeg is overschrijven we daar dus het recursieve programma dat we eerst aan die variabele hadden toegewezen. Als laatste voeren we het programma uit dat op de variabele met naam de inputstring staat.
-
-Dit buitenste programma ziet er als volgt uit:
-\begin{center}
-\makebox{
-\makebox{
-\parbox{28mm}{
-\begin{smurf}
-\footnotesize
-i "input" p\\
-"input" g\\
-"input" g q\\
-\emph{subprogramma-string}\\
-+\\
-"input" g p\\
-"\textbackslash{}"\textbackslash{}"o" "" p\\
-g x
-\end{smurf}
-}}
-
-\parbox{8mm}{
-\begin{smurf}
-\footnotesize
-(1)\\
-(2)\\
-(3)\\
-.\\
-.\\
-(4)\\
-(5)\\
-(6)
-\end{smurf}
-}}
-\end{center}
-
-\textbf{(1)} Allereerst wordt de inputstring op de stack gezet en naar de variabele met naam "input" geschreven. De stack is nu weer leeg. \textbf{(2)} Nu zetten we de inputwaarde weer op de stack voor later gebruik. De reden hiervoor volgt straks.
-\textbf{(3)} Hierna halen we deze inputwaarde voor de tweede keer op, quotifyen we hem en prependen we het tot de subprogramma-string. Dit kun je zien als het doorgeven van een argument. De reden dat we de input quotifyen is dat dit ervoor zorgt dat alle karakters in de input behouden blijven (ook die met speciale betekenis zoals "\textbackslash{}") wanneer het subprogramma wordt uitgevoerd. Het subprogramma staat zelf al gequotifyed hier.
-Op dit moment staat het grote programma met de input eraan geprepend op de stack, met als element eronder de inputwaarde die we zo nodig hebben. \textbf{(4)} Nu halen we opnieuw de waarde van de input op uit de variabele waarnaar we het eerst hadden weggeschreven en gebruiken we dit als een variabelenaam om het subprogramma naar weg te schrijven. Merk op dat we onze opslag van de inputstring verliezen als die toevallig de waarde "input" had, omdat we die variabele dan overschrijven. Dit is waarom we deze waarde van tevoren een keer extra op de stack hebben gezet. Zo kunnen we hem bij (6) nog gebruiken. \textbf{(5)} Nu zetten we het gequotifyde programma "output de lege string" op het register met naam de lege string. Ongequotifyed ziet het er zo uit: \texttt{""o}
-\textbf{(6)} Als laatste halen we het programma op van de variabele met als naam de inputstring die we in (2) op de stack hadden gezet en voeren we dit programma uit.
+\input{explanation-outer}
 
 \subsubsection{Het recursieve binnenste programma}
-
-
-
+\input{explanation-inner}
 
