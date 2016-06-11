@@ -1,0 +1,43 @@
+% vim: set spelllang=nl:
+\subsection{Types}
+\label{sec:cleansmurf:types}
+Het programma houdt de expressieve syntax uit \autoref{sec:def:syn} aan. Het
+type \CI{Stm} is dus:
+
+\lstinputlisting[firstline=15,lastline=20]{CleanSmurf/Smurf.dcl}
+
+We gebruiken lijsten als stacks en implementeren de store met behulp van een
+tabel van naam-waarde paren:
+
+\lstinputlisting[firstline=22,lastline=27]{CleanSmurf/Smurf.dcl}
+
+Ten slotte definiëren we transities. Aangezien alle semantiekregels hooguit één
+premisse hebben, kunnen we een afleidingsboom als lijstje transities zien:
+
+\lstinputlisting[firstline=35,lastline=36]{CleanSmurf/Smurf.dcl}
+
+Met deze definities kunnen we een \CI{step :: Program State -> Maybe (Program,
+State)} definiëren. Dit komt bijna overeen met de structuur van transities. We
+moeten een \CI{Program} teruggeven, omdat we slechts één stap zetten. Wat dit
+betreft lijken de regels van \emph{CleanSmurf} meer op regels in structurele
+operationele semantiek. We hebben al laten zien dat deze regels erg veel lijken
+op die in natuurlijke semantiek.
+
+Het type van \CI{step} neemt nog geen Input/Output mee. We maken er een
+overloaded functie van, zodat hij voor meerdere inputmethodes kan worden
+gebruikt. Het uiteindelijke type is:
+
+\lstinputlisting[firstline=56,lastline=56]{CleanSmurf/Smurf.dcl}
+
+Hoe dit precies werkt is niet belangrijk voor de beschrijving hier. Het derde
+argument, van type \CI{io}, is de `IO-toestand'. Het vierde argument, van type
+\CI{IO io}, omvat een input-functie die strings oplevert (gegeven de
+IO-toestand) en een output-functie die strings opneemt (in de IO-toestand).
+
+\medskip
+Verder definiëren we een aantal hulpfuncties:
+
+\lstinputlisting[firstline=232,lastline=245]{CleanSmurf/Smurf.icl}
+
+De partiële functies zijn hier gesimuleerd met het \CI{Maybe}-type. Dit laat
+ons monadische operatoren gebruiken in het uitwerken van de interpreter.

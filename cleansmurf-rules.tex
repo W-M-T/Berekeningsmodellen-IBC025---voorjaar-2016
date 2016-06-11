@@ -1,0 +1,30 @@
+% vim: set spelllang=nl:
+\subsection{Semantiekregels}
+\label{sec:cleansmurf:regels}
+Iedere semantiekregel vertaalt min of meer direct naar een functiealternatief
+voor \CI{step}. Echter, omdat we geen \CI{run}- maar een \CI{step}-functie
+schrijven, moeten we compositie expliciet maken.
+
+Als voorbeeld zullen we de implementatie van $\StmHead$ bekijken. Aangezien
+\CI{pop} en \CI{head} allebei een \CI{Maybe} opleveren, kunnen we de resultaten
+gemakkelijk binden. Vervolgens wordt de stack geüpdate en wordt de rest van het
+programma (\CI{p}) teruggegeven. De IO-toestand wordt zonder gebruik
+doorgegeven. Het vierde argument hebben we niet nodig en kan dus worden
+genegeerd.
+
+\lstinputlisting[firstline=213,lastline=215]{CleanSmurf/Smurf.icl}
+
+Andere regels, voor $\StmPush$, $\StmTail$, $\StmCat$, $\StmQuotify$ en ook
+$\StmPut$ en $\StmGet$ gaan op soortgelijke wijze. Ook $\StmInput$ en
+$\StmOutput$ kunnen op dezelfde manier worden geschreven, afgezien van het feit
+dat de IO-toestand en -functies gebruikt moeten worden.
+
+In het geval van $\StmExec$ kunnen we handig gebruik maken van het feit dat
+\CI{step} een nieuw programma oplevert:
+
+\lstinputlisting[firstline=228,lastline=230]{CleanSmurf/Smurf.icl}
+
+Zoals te zien wordt een nieuwe toestand gemaakt (\CI{zero}) waarin dit nieuwe
+programma (\CI{p}) wordt uitgevoerd. De compositie \CI{parse o fromString}
+parseert een String van de stack en levert een \CI{Maybe Program} op. Dus ook
+deze wat afwijkende regel levert geen problemen op.

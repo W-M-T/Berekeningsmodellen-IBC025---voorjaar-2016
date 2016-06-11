@@ -1,0 +1,59 @@
+% vim: spelllang=nl:
+\subsection{Hulp bij bewijzen}
+\label{sec:cleansmurf:proofs}
+
+Omdat aan de linkerkant van Smurftransities niet alleen het programma en de
+toestand, maar ook de input staat, heeft een Smurfprogramma voor iedere input
+een andere afleidingsboom. Deze afleidingsbomen zijn vervolgens met
+\emph{CleanSmurf} te genereren. Vaak zullen we echter uitspraken willen doen
+die abstraheren van de input, zoals ``Voor iedere input $s_1:s_2:\Nil$ zal de
+output $s_2:\Nil$ zijn.'' Hier kan \emph{CleanSmurf} niet mee overweg, wat het
+een weinig behulpzame toepassing voor bewijshulp maakt.
+
+Een uitbreiding op \emph{CleanSmurf} implementeert een simplistische bewijshulp
+die in sommige gevallen met variabelen overweg kan. Op dit moment is het een
+\emph{proof of concept}. Sommige delen zijn nog niet geïmplementeerd. Wel is
+het al bruikbaar in bepaalde gevallen, zoals we in \autoref{sec:analyse} zullen
+zien.
+
+De oplossing hiervoor is complex. Waar hierboven de stack werd gemodelleerd met
+een lijst van Strings, zal dit nu niet meer voldoende zijn: we moeten
+onderscheid maken tussen \emph{literals} en \emph{bewijsvariabelen}. Voor de
+duidelijkheid maken we vanaf nu onderscheid tussen variabelen (elementen op de
+stack of in de variable store) en bewijsvariabelen (variabelen waar de
+bewijshulp mee werkt).
+
+Combinaties van literals en bewijsvariabelen moeten ook voor kunnen komen (bv.
+literal \lit{s} geconcateneerd met variabele $t$). Bovendien kunnen
+bewijsvariabelen ook in een Smurfprogramma terechtkomen, omdat Smurf geen
+duidelijk onderscheid kent tussen variabelen en Smurfprogramma's (middels
+$\StmExec$ kan een variabele uitgevoerd worden). Dit laatste moet de bewijshulp
+ten minste deels ondersteunen: variabelen komen al snel in programma's terecht
+op het moment dat iteratie gewenst is.
+
+Om variabelen te modelleren definiëren we een nieuw type, \CI{Expr}:
+
+\lstinputlisting[firstline=15,lastline=20]{CleanSmurfProver/Smurf.dcl}
+
+Vervolgens vervangen we \CI{String} door \CI{Expr} in de definities van
+\CI{Stm}, \CI{Stack} en \CI{Store}.
+
+Dit heeft gevolgen voor de \CI{step}-functie en zijn hulpfuncties. Waar we
+eerst \CI{head} op een \CI{String} toepasten, doen we dat nu op een \CI{Expr}.
+Deze functie moeten we dus herschrijven naar:
+
+\lstinputlisting[firstline=272,lastline=275]{CleanSmurfProver/Smurf.icl}
+
+Op deze manier kunnen we de head van een variabele nemen. Er wordt in dit geval
+niet gecontroleerd of die variabele niet leeg is. Het is aan de gebruiker van
+de bewijshulp dit na te gaan. Soortgelijke aanpassingen moeten we maken voor
+andere functies.
+
+Helaas werkt de oude functie om een boom te maken, \CI{tree}, niet meer na deze
+veranderingen: op een gegeven moment zal \CI{step} moeten weten wat de inhoud
+van een bewijsvariabele is.
+
+Om dit op te lossen introduceren we \emph{bewijshints}. Dit zijn transities
+waarvan we de bewijshulp vertellen dat hij mag aannemen dat die bestaan. De
+\CI{prover}, de bewijshulp-variant van \CI{tree}, zal bomen slechts maken tot
+het punt dat zo'n bewijshint gevonden wordt.
