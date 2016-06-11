@@ -14,7 +14,8 @@ Een uitbreiding op \emph{CleanSmurf} implementeert een simplistische bewijshulp
 die in sommige gevallen met variabelen overweg kan. Op dit moment is het een
 \emph{proof of concept}. Sommige delen zijn nog niet geïmplementeerd. Wel is
 het al bruikbaar in bepaalde gevallen, zoals we in \autoref{sec:analyse} zullen
-zien.
+zien. De bewijshulp is te vinden in de \texttt{prover} branch van
+\emph{CleanSmurf}~\cite{cleansmurf}.
 
 De oplossing hiervoor is complex. Waar hierboven de stack werd gemodelleerd met
 een lijst van Strings, zal dit nu niet meer voldoende zijn: we moeten
@@ -40,15 +41,21 @@ Vervolgens vervangen we \CI{String} door \CI{Expr} in de definities van
 
 Dit heeft gevolgen voor de \CI{step}-functie en zijn hulpfuncties. Waar we
 eerst \CI{head} op een \CI{String} toepasten, doen we dat nu op een \CI{Expr}.
-Deze functie moeten we dus herschrijven naar:
+Deze functie moeten we dus herschrijven naar de onderstaande code. Soortgelijke
+aanpassingen moeten we maken voor andere functies.
 
-\lstinputlisting[firstline=272,lastline=275]{CleanSmurfProver/Smurf.icl}
+\lstinputlisting[firstline=272,lastline=277]{CleanSmurfProver/Smurf.icl}
 
-Op deze manier kunnen we de head van een variabele nemen. Er wordt in dit geval
-niet gecontroleerd of die variabele niet leeg is. Het is aan de gebruiker van
-de bewijshulp dit na te gaan. Soortgelijke aanpassingen moeten we maken voor
-andere functies.
+Op deze manier kunnen we de head van een variabele nemen. Dit wordt, volgens
+het laatste alternatief, opgeslagen als \CI{EHead (Var ..)}. Er wordt in dit
+geval niet gecontroleerd of die variabele niet leeg is. Het is aan de gebruiker
+van de bewijshulp dit na te gaan. In het bijzonder kunnen er dingen fout gaan
+voor expressies als \CI{ECat (Var "s") (Lit "xyz")}: nemen we hier de head van,
+dan zal dit worden opgeslagen als \CI{EHead (Var "s")}, terwijl dit \CI{Lit
+"x"} zou moeten zijn als \CI{s} leeg is. Dit zijn dingen waar uiteindelijk wel
+op te controleren valt, maar nog niet volledig geïmplementeerd zijn.
 
+\medskip
 Helaas werkt de oude functie om een boom te maken, \CI{tree}, niet meer na deze
 veranderingen: op een gegeven moment zal \CI{step} moeten weten wat de inhoud
 van een bewijsvariabele is.
@@ -56,4 +63,24 @@ van een bewijsvariabele is.
 Om dit op te lossen introduceren we \emph{bewijshints}. Dit zijn transities
 waarvan we de bewijshulp vertellen dat hij mag aannemen dat die bestaan. De
 \CI{prover}, de bewijshulp-variant van \CI{tree}, zal bomen slechts maken tot
-het punt dat zo'n bewijshint gevonden wordt.
+het punt dat zo'n bewijshint gevonden wordt. Het type van \CI{prover} is
+hetzelfde als dat van \CI{tree}, behalve dat een extra argument is toegevoegd
+voor de bewijshints:
+
+\lstinputlisting[firstline=72,lastline=73]{CleanSmurfProver/Smurf.dcl}
+
+Het eerste argument is een functie die voor een argument \CI{(pgm,i,st)} een
+\CI{Just (i',o,st')} oplevert dan en slechts dan als de bewijshulp mag aannemen
+dat er een afleidingsboom bestaat voor de transitie
+$\trans\pgm\ip\st{\ip'}\op{\st'}$. Willen we geen bewijshints meegeven, dan
+kunnen we hier simpelweg \CI{(\\_ -> Nothing)} voor invullen. De oude \CI{tree}
+is dus te herdefiniëren als:
+
+\lstinputlisting[firstline=74,lastline=74]{CleanSmurfProver/Smurf.dcl}
+
+De bewijshulp kan afleidingsbomen in \TeX{} genereren. Hiervoor wordt
+\texttt{prooftree.sty}~\cite{prooftree} gebruikt. Door een probleem in dit
+package, dat niet herzien is sinds 1996, kan bij grote bomen \TeX{}'s
+\emph{grouping limit} worden overschreven. Dit kan verholpen worden door
+LuaLaTeX te gebruiken. Alle bomen in \autoref{sec:app:trees} zijn op deze
+manier gegenereerd.
