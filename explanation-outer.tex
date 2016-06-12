@@ -3,7 +3,7 @@
 Het buitenste programma controleert of we te maken hebben met de lege string
 als inputstring. Als dit het geval is geeft het de lege string als output.
 Anders wordt het recursieve subprogramma gebruikt, dat alleen voor strings van
-lengtes groter dan nul gedefini\"{e}erd is.
+lengtes groter dan nul gedefinieerd is.
 
 Omdat Smurf geen conditionals kent, moeten we hier op een slimme manier omgaan
 met het feit dat waarden ook als variabelenaam kunnen worden gebruikt. Dit is
@@ -19,7 +19,7 @@ variabele met naam de inputstring staat.
 Het buitenste programma ziet er als volgt uit:
 \begin{center}
 \makebox{
-\parbox{35mm}{
+\parbox{45mm}{
 \begin{smurf}
 \footnotesize
 i "input" p\\
@@ -39,8 +39,8 @@ g x
 (1)\\
 (2)\\
 (3)\\
-.\\
-.\\
+~\\
+~\\
 (4)\\
 (5)\\
 (6)
@@ -48,32 +48,30 @@ g x
 }}
 \end{center}
 
-\begin{description}
-\item \textbf{(1)} Allereerst wordt de inputstring op de stack gezet en naar de
-variabele met naam "input" geschreven. De stack is nu weer leeg.
-\item \textbf{(2)}
-Nu zetten we de inputwaarde weer op de stack voor later gebruik. De reden
-hiervoor volgt straks.
-\item \textbf{(3)} Hierna halen we deze inputwaarde voor de
-tweede keer op, quotifyen we hem en voegen we het toe aan het begin van de
-subprogramma-string. Dit kun je zien als het doorgeven van een argument. De
-reden dat we de input quotifyen is dat dit ervoor zorgt dat alle karakters in
-de input behouden blijven (ook die met speciale betekenis zoals
-"\textbackslash{}") wanneer het subprogramma wordt uitgevoerd. Het subprogramma
-staat zelf al gequotifyed hier.  Op dit moment staat het grote programma met de
-input eraan voorgevoegd op de stack, met als element eronder de inputwaarde die
-we zo nodig hebben.
-\item \textbf{(4)} Nu halen we opnieuw de waarde van de input op
-uit de variabele waarnaar we het eerst hadden weggeschreven en gebruiken we dit
-als een variabelenaam om het subprogramma naar weg te schrijven. Merk op dat we
-onze opslag van de inputstring verliezen als die toevallig de waarde "input"
-had, omdat we die variabele dan overschrijven. Dit is waarom we deze waarde van
-tevoren een keer extra op de stack hebben gezet. Zo kunnen we hem bij (6) nog
-gebruiken.
-\item \textbf{(5)} Nu zetten we het gequotifyde programma "output de lege
-string" op het register met naam de lege string. Ongequotifyed ziet het er zo
-uit: \texttt{""o}
-\item \textbf{(6)} Als laatste halen we het programma op van de
-variabele met als naam de inputstring die we in (2) op de stack hadden gezet en
-voeren we dit programma uit.
-\end{description}
+\begin{enumerate}
+	\item Allereerst wordt de inputstring op de stack gezet en naar de variabele
+		met naam \smurfinline{input} geschreven. De stack is nu weer leeg.
+	\item We zetten de inputwaarde weer op de stack voor later gebruik. Waarom
+		dit nodig is wordt uitgelegd in punt 4.
+	\item Hierna halen we deze inputwaarde voor de tweede keer op, quotifyen we
+		hem en voegen we het toe aan het begin van de subprogramma-string. Dit is
+		vergelijkbaar met het doorgeven van een functieargument. De reden dat we de
+		input quotifyen is dat dit ervoor zorgt dat alle karakters in de input
+		behouden blijven (ook die met speciale betekenis zoals
+		\lit{\textbackslash{}}) wanneer het subprogramma wordt uitgevoerd. Het
+		subprogramma staat zelf al gequotifyed hier. Op dit moment staat het grote
+		programma met de input eraan voorgevoegd op de stack, met als element
+		eronder de inputwaarde die we zo nodig hebben.
+	\item Nu halen we opnieuw de waarde van de input op uit de variabele waarnaar
+		we het eerst hadden weggeschreven en gebruiken we dit als een variabelenaam
+		om het subprogramma naar weg te schrijven. Merk op dat we onze opslag van
+		de inputstring verliezen als die toevallig de waarde \smurfinline{input}
+		had, omdat we die variabele dan overschrijven. Dit is waarom we deze waarde
+		van tevoren een keer extra op de stack hebben gezet. Zo kunnen we hem bij
+		(6) nog gebruiken.
+	\item Nu zetten we het gequotifyde programma "output de lege string" in de
+		variabele $\lambda$. Ongequotifyed ziet het uit als \smurfinline{""o}.
+	\item Als laatste halen we het programma op van de variabele met als naam de
+		inputstring die we in (2) op de stack hadden gezet en voeren we dit
+		programma uit.
+\end{enumerate}

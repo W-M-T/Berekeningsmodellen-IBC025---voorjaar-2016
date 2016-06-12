@@ -1,29 +1,31 @@
 % vim: set spelllang=nl:
 \subsubsection{Het recursieve binnenste programma}
-Het binnenste programma draait strings van lengte n + 1 om. Hiervoor krijgt het
-twee "argumenten" geprepend mee. Het eerste argument is een string in zijn
+Het binnenste programma draait strings van lengte $n\ge1$ om. Hiervoor krijgt het
+twee ``argumenten'' mee als $\StmPush$-commando's. Het eerste argument is een string in zijn
 oorspronkelijke volgorde, die elke recursieve aanroep \'{e}\'{e}n karakter
-kleiner wordt. Het tweede argument is een string die initi\"{e}el de lege
+kleiner wordt. Het tweede argument is een string die initieel de lege
 string is, maar bij elke recursieve aanroep \'{e}\'{e}n karakter groter wordt
-en de omgekeerde string voorstelt. De reden dat dit programma alleen voor
-strings van lengte n + 1 werkt is als volgt: het testen van waarden kost zoals
-we eerder hadden gezien een programma-aanroep. Wij hebben ervoor gekozen om
-eerst de string te verkleinen en daarna te kijken of we de lege string hebben
-bereikt (de hele string is omgedraaid) om te bepalen of we dit programma nog
-eens moeten uitvoeren met nieuwe argumenten. Als je zou willen bepalen of je
-inputstring leeg was voordat je deze verkleint zou je 2 recursieve programma's
-nodig hebben die elkaar telkens aanroepen: \'{e}\'{e}n die als eerste test of
-de input leeg en daarop gebaseerd \'{o}f het andere programma aanroept \'{o}f
-output geeft en eindigt en een ander programma dat de string verkleint en dan
-het eerste programma aanroept om weer de waarde te testen. Het leek ons dus
-beter om aan het einde te testen of we door moeten gaan en het geval van de
-lege string op te vangen in het buitenste programma.
+en de omgekeerde string voorstelt.
+
+De reden dat dit programma niet voor de lege string werkt is de volgende: het
+testen van waarden kost zoals we eerder hebben gezien een programma-aanroep. We
+hebben ervoor gekozen om eerst de string te verkleinen en daarna te kijken of
+we de lege string hebben bereikt (de hele string is omgedraaid) om te bepalen
+of we dit programma nog eens moeten uitvoeren met nieuwe argumenten. Als je zou
+willen bepalen of je inputstring leeg was voordat je deze verkleint zou je twee
+recursieve programma's nodig hebben die elkaar telkens aanroepen: \'{e}\'{e}n
+die als eerste test of de input leeg en op basis daarvan \'{o}f het andere
+programma aanroept \'{o}f output geeft en eindigt, en een ander programma dat
+de string verkleint en dan het eerste programma aanroept om weer de waarde te
+testen. Dit is echter onnodig complex. Het leek ons beter om aan het einde te
+testen of we door moeten gaan en het geval van de lege string op te vangen in
+het buitenste programma.
 
 Het recursieve omdraaiprogramma ziet er zo uit:
 
 \begin{center}
 \makebox{
-\parbox{48mm}{
+\parbox{60mm}{
 \begin{smurf}
 \footnotesize
 \emph{x-string} \emph{y-string}\\
@@ -63,85 +65,88 @@ g x
 \footnotesize
 (1)\\
 (2)\\
-.\\
-.\\
-.\\
-.\\
-.\\
-.\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
 (3)\\
-.\\
-.\\
-.\\
+~\\
+~\\
+~\\
 (4)\\
-.\\
+~\\
 (5)\\
-.\\
+~\\
 (6)\\
-.\\
+~\\
 (7)\\
-.\\
+~\\
 (8)\\
-.\\
-.\\
-.\\
+~\\
+~\\
+~\\
 (9)\\
-.\\
+~\\
 (10)\\
-.\\
+~\\
 (11)
 \end{smurf}
 }}
 \end{center}
 
-\begin{description}
-\item \textbf{(1)} De argumenten worden er de eerste keer opgezet door het buitenste
-programma. Merk op dat het y-argument in het buitenste programma
-\texttt{"\textbackslash"\textbackslash""} is, wat de gequotifyde versie is van
-\texttt{""}, oftewel de lege string. Het x-argument is dan de niet-lege input.
-\item \textbf{(2)} Hierna wordt de een string van de rest van het programma (vanaf
-(3)) op de stack gezet. Dit zorgt ervoor dat recursie mogelijk is.
-\item \textbf{(3)} Het programma en de argumenten worden in variabelen opgeslagen.
-"program" voor het programma, "grow" voor het rechterargument, "shrink" voor
-het linkerargument.
-\item \textbf{(4)} De waarde van "shrink" wordt opgehaald en
-vervangen door zijn eerste karakter. Daarna wordt "grow" opgehaald en het
-eerste karakter van "shrink" wordt eraan geappend. Het resultaat hiervan wordt
-weggeschreven naar "grow".
-\item \textbf{(5)} Nu wordt de waarde van "shrink" nog
-eens opgehaald, vervangen door zijn tail en weer teruggeschreven naar "shrink".
-Nu is het eerste karakter van shrink dus naar achter "grow" verplaatst.
-\item \textbf{(6)} De nieuwe waarde van "shrink" wordt nu al vast op de stack gezet,
-voor dezelfde reden dat dit in het buitenste programma met "input" gebeurde.
-Wanneer we hem later nodig hebben hebben we niet de garantie dat de
-variabelenaam niet overschreven is, dus we zetten hem er nu al op.
-\item \textbf{(7)} De nieuwe waarde van "grow" wordt opgehaald en gequotifyed. Ook
-appenden we "o" eraan. Zo vormt het een programmastring die die waarde zou
-outputten wanneer uitgevoerd. Dit moeten we doen als "shrink" leeg is geworden.
-Merk op dat het programma dat moet worden uitgevoerd wanneer de string leeg is
-geworden in tegenstelling tot in het buitenste programma hier v\'{o}\'{o}r het
-andere programma wordt aangemaakt. Dit doen we omdat we hier een waarde van een
-variabele gebruiken en we niet weten of de variabele straks overschreven wordt.
-We bouwen deze programmastring dus al vast, maar laten hem nog gewoon op de
-stack staan.
-\item \textbf{(8)} "shrink" en "grow" worden opgehaald en gequotifyed.
-Ook "program" wordt opgehaald en gequotifyed. Dit alles appenden we aan elkaar.
-Nu wordt "program" nog eens opgehaald, niet gequotifyed en aan de eerdere sting
-geappend. Nu is deze hele string gelijk aan het hele programma, maar met de
-nieuwe waarden van "grow" en "shrink" als argumenten.
-\item \textbf{(9)} Nu komt het
-deel waar we de waarde van shrink testen om te kiezen of we output moeten
-geven, of nog een recursiestap moeten uitvoeren. De waarde van "shrink" wordt
-opgehaald en gebruikt als variabelenaam om het programma dat we in (8) hadden
-gebouwd naar weg te schrijven. Vanaf dit punt kunnen we geen van onze
-variabelen meer gebruiken, omdat de waarde van "shrink" toevallig gelijk zou
-kunnen zijn geweest aan de naam van een van onze variabelen
-\item \textbf{(10)} Nu
-schrijven we het programma dat we in (7) hadden gebouwd en nog op de stack
-stond weg naar de variabele met naam de lege string.
-\item \textbf{(11)} Nu halen we
-de waarde op van de variabele met als naam de waarde van "shrink" die we in (6)
-al op de stack hadden gezet. Als "shrink" leeg was vinden we het programma uit
-(7). Anders vinden we het programma uit (8). We voeren het gevonden programma
-uit.
-\end{description}
+De programmaonderdelen worden hieronder toegelicht.
+
+\begin{enumerate}
+	\item De argumenten worden er de eerste keer opgezet door het buitenste
+		programma. Merk op dat het y-argument in het buitenste programma
+		\smurfinline{"\textbackslash"\textbackslash""} is, wat de gequotifyde
+		versie is van de lege string. Het x-argument is dan de niet-lege input.
+	\item Hierna wordt de string van de rest van het programma (vanaf (3)) op de
+		stack gezet. Dit zorgt ervoor dat recursie mogelijk is.
+	\item Het programma en de argumenten worden in variabelen opgeslagen:
+		\smurfinline{program} voor het programma, \smurfinline{grow} voor het
+		rechterargument en \smurfinline{shrink} voor het linkerargument.
+	\item De waarde van \smurfinline{shrink} wordt opgehaald en vervangen door
+		zijn eerste karakter. Daarna wordt \smurfinline{grow} opgehaald en het
+		eerste karakter van \smurfinline{shrink} wordt eraan toegevoegd. Het
+		resultaat hiervan wordt weggeschreven naar \smurfinline{grow}.
+	\item Hier wordt \smurfinline{shrink} vervangen door alles behalve zijn
+		eerste karakter. Het eerste karakter van \smurfinline{shrink} is dus
+		verplaatst naar het einde van \smurfinline{grow}.
+	\item De nieuwe waarde van \smurfinline{shrink} wordt nu alvast op de stack
+		gezet, voor dezelfde reden dat dit in het buitenste programma met
+		\smurfinline{input} gebeurde.  Wanneer we hem later nodig hebben hebben we
+		niet de garantie dat de variabelenaam niet overschreven is, dus we zetten
+		hem er nu al op.
+	\item De nieuwe waarde van \smurfinline{grow} wordt opgehaald en gequotifyed.
+		Ook voegen we \smurfinline{o} er aan toe. Zo vormt het een programmastring
+		die die waarde zou outputten wanneer uitgevoerd. Dit moeten we doen als
+		\smurfinline{shrink} leeg is geworden. Merk op dat het programma dat moet
+		worden uitgevoerd wanneer de string leeg is geworden in tegenstelling tot
+		in het buitenste programma hier v\'{o}\'{o}r het andere programma wordt
+		aangemaakt. Dit doen we omdat we hier een waarde van een variabele
+		gebruiken en we niet weten of de variabele straks overschreven wordt.  We
+		bouwen deze programmastring dus alvast, maar laten hem nog gewoon op de
+		stack staan.
+	\item \smurfinline{shrink} en \smurfinline{grow} worden opgehaald en
+		gequotifyed. Ook \smurfinline{program} wordt opgehaald en gequotifyed. Dit
+		alles concateneren we. De variabele \smurfinline{program} wordt nog eens
+		opgehaald, niet gequotifyed en aan de eerdere string toegevoegd. Nu is deze
+		hele string gelijk aan het hele programma, maar met de nieuwe waarden van
+		\smurfinline{grow} en \smurfinline{shrink} als argumenten.
+	\item Nu komt het deel waar we de waarde van \smurfinline{shrink} testen om
+		te kiezen of we output moeten geven, of nog een recursiestap moeten
+		uitvoeren. De waarde van \smurfinline{shrink} wordt opgehaald en gebruikt
+		als variabelenaam om het programma dat we in (8) hadden gebouwd naar weg te
+		schrijven. Vanaf dit punt kunnen we geen van onze variabelen meer
+		gebruiken, omdat de waarde van \smurfinline{shrink} toevallig gelijk zou
+		kunnen zijn geweest aan de naam van een van onze variabelen
+	\item Nu schrijven we het programma dat we in (7) hadden gebouwd en nog op de
+		stack stond weg naar de variabele $lambda$.
+	\item We halen de waarde op van de variabele met als naam de waarde van
+		\smurfinline{shrink} die we in (6) al op de stack hadden gezet. Als
+		\smurfinline{shrink} leeg was vinden we het programma uit (7). Anders
+		vinden we het programma uit (8). We voeren het gevonden programma uit.
+\end{enumerate}
