@@ -94,25 +94,28 @@ g x
 }}
 \end{center}
 
-\textbf{(1)} De argumenten worden er de eerste keer opgezet door het buitenste
+\begin{description}
+\item \textbf{(1)} De argumenten worden er de eerste keer opgezet door het buitenste
 programma. Merk op dat het y-argument in het buitenste programma
 \texttt{"\textbackslash"\textbackslash""} is, wat de gequotifyde versie is van
 \texttt{""}, oftewel de lege string. Het x-argument is dan de niet-lege input.
-\textbf{(2)} Hierna wordt de een string van de rest van het programma (vanaf
+\item \textbf{(2)} Hierna wordt de een string van de rest van het programma (vanaf
 (3)) op de stack gezet. Dit zorgt ervoor dat recursie mogelijk is.
-\textbf{(3)} Het programma en de argumenten worden in variabelen opgeslagen.
+\item \textbf{(3)} Het programma en de argumenten worden in variabelen opgeslagen.
 "program" voor het programma, "grow" voor het rechterargument, "shrink" voor
-het linkerargument.  \textbf{(4)} De waarde van "shrink" wordt opgehaald en
+het linkerargument.
+\item \textbf{(4)} De waarde van "shrink" wordt opgehaald en
 vervangen door zijn eerste karakter. Daarna wordt "grow" opgehaald en het
 eerste karakter van "shrink" wordt eraan geappend. Het resultaat hiervan wordt
-weggeschreven naar "grow".  \textbf{(5)} Nu wordt de waarde van "shrink" nog
+weggeschreven naar "grow".
+\item \textbf{(5)} Nu wordt de waarde van "shrink" nog
 eens opgehaald, vervangen door zijn tail en weer teruggeschreven naar "shrink".
 Nu is het eerste karakter van shrink dus naar achter "grow" verplaatst.
-\textbf{(6)} De nieuwe waarde van "shrink" wordt nu al vast op de stack gezet,
+\item \textbf{(6)} De nieuwe waarde van "shrink" wordt nu al vast op de stack gezet,
 voor dezelfde reden dat dit in het buitenste programma met "input" gebeurde.
 Wanneer we hem later nodig hebben hebben we niet de garantie dat de
 variabelenaam niet overschreven is, dus we zetten hem er nu al op.
-\textbf{(7)} De nieuwe waarde van "grow" wordt opgehaald en gequotifyed. Ook
+\item \textbf{(7)} De nieuwe waarde van "grow" wordt opgehaald en gequotifyed. Ook
 appenden we "o" eraan. Zo vormt het een programmastring die die waarde zou
 outputten wanneer uitgevoerd. Dit moeten we doen als "shrink" leeg is geworden.
 Merk op dat het programma dat moet worden uitgevoerd wanneer de string leeg is
@@ -120,20 +123,25 @@ geworden in tegenstelling tot in het buitenste programma hier v\'{o}\'{o}r het
 andere programma wordt aangemaakt. Dit doen we omdat we hier een waarde van een
 variabele gebruiken en we niet weten of de variabele straks overschreven wordt.
 We bouwen deze programmastring dus al vast, maar laten hem nog gewoon op de
-stack staan.  \textbf{(8)} "shrink" en "grow" worden opgehaald en gequotifyed.
+stack staan.
+\item \textbf{(8)} "shrink" en "grow" worden opgehaald en gequotifyed.
 Ook "program" wordt opgehaald en gequotifyed. Dit alles appenden we aan elkaar.
 Nu wordt "program" nog eens opgehaald, niet gequotifyed en aan de eerdere sting
 geappend. Nu is deze hele string gelijk aan het hele programma, maar met de
-nieuwe waarden van "grow" en "shrink" als argumenten.  \textbf{(9)} Nu komt het
+nieuwe waarden van "grow" en "shrink" als argumenten.
+\item \textbf{(9)} Nu komt het
 deel waar we de waarde van shrink testen om te kiezen of we output moeten
 geven, of nog een recursiestap moeten uitvoeren. De waarde van "shrink" wordt
 opgehaald en gebruikt als variabelenaam om het programma dat we in (8) hadden
 gebouwd naar weg te schrijven. Vanaf dit punt kunnen we geen van onze
 variabelen meer gebruiken, omdat de waarde van "shrink" toevallig gelijk zou
-kunnen zijn geweest aan de naam van een van onze variabelen.  \textbf{(10)} Nu
+kunnen zijn geweest aan de naam van een van onze variabelen
+\item \textbf{(10)} Nu
 schrijven we het programma dat we in (7) hadden gebouwd en nog op de stack
-stond weg naar de variabele met naam de lege string.  \textbf{(11)} Nu halen we
+stond weg naar de variabele met naam de lege string.
+\item \textbf{(11)} Nu halen we
 de waarde op van de variabele met als naam de waarde van "shrink" die we in (6)
 al op de stack hadden gezet. Als "shrink" leeg was vinden we het programma uit
 (7). Anders vinden we het programma uit (8). We voeren het gevonden programma
 uit.
+\end{description}

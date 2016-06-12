@@ -48,10 +48,13 @@ g x
 }}
 \end{center}
 
-\textbf{(1)} Allereerst wordt de inputstring op de stack gezet en naar de
-variabele met naam "input" geschreven. De stack is nu weer leeg. \textbf{(2)}
+\begin{description}
+\item \textbf{(1)} Allereerst wordt de inputstring op de stack gezet en naar de
+variabele met naam "input" geschreven. De stack is nu weer leeg.
+\item \textbf{(2)}
 Nu zetten we de inputwaarde weer op de stack voor later gebruik. De reden
-hiervoor volgt straks.  \textbf{(3)} Hierna halen we deze inputwaarde voor de
+hiervoor volgt straks.
+\item \textbf{(3)} Hierna halen we deze inputwaarde voor de
 tweede keer op, quotifyen we hem en voegen we het toe aan het begin van de
 subprogramma-string. Dit kun je zien als het doorgeven van een argument. De
 reden dat we de input quotifyen is dat dit ervoor zorgt dat alle karakters in
@@ -59,14 +62,18 @@ de input behouden blijven (ook die met speciale betekenis zoals
 "\textbackslash{}") wanneer het subprogramma wordt uitgevoerd. Het subprogramma
 staat zelf al gequotifyed hier.  Op dit moment staat het grote programma met de
 input eraan voorgevoegd op de stack, met als element eronder de inputwaarde die
-we zo nodig hebben. \textbf{(4)} Nu halen we opnieuw de waarde van de input op
+we zo nodig hebben.
+\item \textbf{(4)} Nu halen we opnieuw de waarde van de input op
 uit de variabele waarnaar we het eerst hadden weggeschreven en gebruiken we dit
 als een variabelenaam om het subprogramma naar weg te schrijven. Merk op dat we
 onze opslag van de inputstring verliezen als die toevallig de waarde "input"
 had, omdat we die variabele dan overschrijven. Dit is waarom we deze waarde van
 tevoren een keer extra op de stack hebben gezet. Zo kunnen we hem bij (6) nog
-gebruiken. \textbf{(5)} Nu zetten we het gequotifyde programma "output de lege
+gebruiken.
+\item \textbf{(5)} Nu zetten we het gequotifyde programma "output de lege
 string" op het register met naam de lege string. Ongequotifyed ziet het er zo
-uit: \texttt{""o} \textbf{(6)} Als laatste halen we het programma op van de
+uit: \texttt{""o}
+\item \textbf{(6)} Als laatste halen we het programma op van de
 variabele met als naam de inputstring die we in (2) op de stack hadden gezet en
 voeren we dit programma uit.
+\end{description}
