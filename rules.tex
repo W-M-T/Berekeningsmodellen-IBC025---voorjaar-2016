@@ -1,5 +1,5 @@
 % vim: set spelllang=nl:
-\section{Regels} %todo working title
+\section{Regels in de natuurlijke semantiek}
 \label{sec:rules}
 
 We zullen nu ieder syntaxelement nader specificeren. Ook zullen regels voor de
@@ -16,6 +16,12 @@ maken (in tegenstelling tot bijvoorbeeld een errorstatus aan de rechterkant van
 transities toe te voegen), omdat dit het redeneren over Smurfprogramma's
 makkelijker zal maken.
 
+Hieronder worden de regels gedefinieerd en beargumenteerd. We zullen eerst
+regels bekijken die de stack manipuleren. Daarna laten we de regels die de
+variable store gebruiken zien. Vervolgens bekijken we regels die input en
+output gebruiken. We sluiten af met de regel voor $\StmExec$. In
+\autoref{sec:app:rules} is een alfabetisch overzicht van de regels te vinden.
+
 \input{ruleslambda}
 \input{rulespush}
 \input{ruleshead}
@@ -27,4 +33,3 @@ makkelijker zal maken.
 \input{rulesinput}
 \input{rulesoutput}
 \input{rulesexec}
-

@@ -1,0 +1,167 @@
+\newif\ifprintrule
+\printruletrue
+
+\long\def\printrule#1#2#3{$$
+	\begin{prooftree}
+		#1
+		\ifprintrule
+			\using#2
+		\else
+			\using{}
+		\fi
+		\qquad\text{#3}
+	\end{prooftree}
+$$}
+
+\def\rcatnstree{
+	\trans
+		{\pgm}{\ip}{(\push{s_1~s_2}{\stk''}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmCat:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\thercatns{
+	\printrule\rcatnstree\rcatns{met\enspace
+	\parbox{36mm}{$\pop{\stk} = (s_2,\stk') $,\\$ \pop{\stk'} = (s_1,\stk'')$.}}
+}
+
+\def\rexecnstree{
+	\trans
+		{\pgm'}{\ip}{(\Nil, \emptystore)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmExec:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\therexecns{
+	\printrule\rexecnstree\rexecns{met\enspace
+		\parbox{36mm}{$ \pop{\stk} =(\var,\stk')$,\\
+			$\pgm' = \parsepgm{\var'}$.}
+	}
+}
+
+\def\rgetnstree{
+	\trans
+		{\pgm}{\ip}{(\push{\str~\var}{\stk'}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmGet:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\thergetns{
+	\printrule\rgetnstree\rgetns{met $\pop{\stk}= (\var,\stk')$.}
+}
+
+\def\rheadnstree{
+	\trans
+		{\pgm}{\ip}{(\push{c}{\stk'}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmHead:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\therheadns{
+	\printrule\rheadnstree\rheadns{met $\pop{\stk} = (c~s,\stk')$.}
+}
+
+\def\rinputnstree{
+	\trans
+		{\pgm}{\ip'}{(\push\val\stk, \str)}
+		{\ip''}{\op}{\st}
+	\justifies
+	\trans
+		{\StmInput:\pgm}{\ip}{(\stk,\str)}
+		{\ip''}{\op}{\st}
+}
+
+\long\def\therinputns{
+	\printrule\rinputnstree\rinputns{met $\pop\ip = (\val,\ip')$.}
+}
+
+\def\rlambdanstree{
+	\axjustifies
+	\trans
+		{\lambda}{\ip}{\st}
+		{\ip}{\Nil}{\st}
+}
+
+\long\def\therlambdans{\printrule\rlambdanstree\rlambdans{}}
+
+\def\routputnstree{
+	\trans
+		{\pgm}{\ip}{(\stk',\str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmOutput:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\push{s}{\op}}{\st}
+}
+
+\long\def\theroutputns{
+	\printrule\routputnstree\routputns{met $\pop{\stk} = (s,\stk') $,}
+}
+
+\def\rpushnstree{
+	\trans
+		{\pgm}{\ip}{(\push{s}{\stk}), \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmPush~s:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\therpushns{\printrule\rpushnstree\rpushns{}}
+
+\def\rputnstree{
+	\trans
+		{\pgm}{\ip}{(\stk'', \put\var\val\str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmPut:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\therputns{
+	\printrule\rputnstree\rputns{met\enspace
+		\parbox{36mm}{$\pop{\stk} = (\var,\stk')$,
+		\\$\pop{\stk'}= (\val,\stk'')$.}}
+}
+
+\def\rquotifynstree{
+	\trans
+		{\pgm}{\ip}{(\push{\texttt{"}\escape{s}\texttt{"}}{\stk'}, \str) }
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmQuotify:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\therquotifyns{
+	\printrule\rquotifynstree\rquotifyns{met $\pop{\stk} = (s, stk')$.}
+}
+
+\def\rtailnstree{
+	\trans
+		{\pgm}{\ip}{(\push{s}{\stk'}, \str)}
+		{\ip'}{\op}{\st}
+	\justifies
+	\trans
+		{\StmTail:\pgm}{\ip}{(\stk,\str)}
+		{\ip'}{\op}{\st}
+}
+
+\long\def\thertailns{
+	\printrule\rtailnstree\rtailns{met $ \pop{\stk} = (c~s,\stk') $.}
+}

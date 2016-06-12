@@ -25,19 +25,4 @@ gedefinieerd is. Geeft de gebruiker niet genoeg input, dan hoeven we dus geen
 afleidingsboom te maken (en we zullen dit ook onmogelijk maken).
 
 Dit geeft de volgende regel:
-
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip'}{(\push\val\stk, \str)}
-		{\ip''}{\op}{\st}
-	\justifies
-	\trans
-		{\StmInput:\pgm}{\ip}{(\stk,\str)}
-		{\ip''}{\op}{\st}
-	\using{\rinputns}
-	\qquad
-	\text{met $\pop\ip = (\val,\ip')$.}
-\end{prooftree}
-$$
-
+\therinputns%

@@ -13,24 +13,7 @@ het nieuwe programma om uitgevoerd te worden.  Als de $\stk$ leeg is is deze
 regel niet toepasbaar, omdat $\pop\stk$ dan niet gedefinieerd is. Ook is deze
 regel niet toepasbaar als de gepopte string zelf geen geldig Smurf-programma
 is, omdat $\parsepgmop$ dan niet gedefinieerd is.
-
-$$
-\begin{prooftree}
-	\trans
-		{\pgm'}{\ip}{(\Nil, \emptystore)}
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmExec:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rexecns}
-	\qquad
-	\text{met\enspace
-		\parbox{36mm}{$ \pop{\stk} =(\var,\stk')$,\\
-			$\pgm' = \parsepgm{\var'}$.}
-	}
-\end{prooftree}
-$$
+\therexecns%
 
 \medskip
 $\parsepgmop$ definiëren we als volgt, met een hulpfunctie $\parsestrop$:

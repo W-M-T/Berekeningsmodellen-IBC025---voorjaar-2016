@@ -19,12 +19,15 @@
 \usepackage{stackrel}
 \usepackage{syntax}
 \usepackage{thmtools}
+\usepackage{framed}
+\usepackage{array}
 
 \usepackage{clean}
 \lstset{language=Clean,breaklines,tabsize=2,xleftmargin=\parindent}
 
 % Eigen packages
 \usepackage{smurf}
+\input{rule-defs}
 
 % Settings, fixes
 \setlist{itemsep=0pt}
@@ -56,7 +59,9 @@
 \input{analyse}
 \input{refs}
 
+\clearpage
 \appendix
+\input{app-rules.tex}
 \input{app-trees.tex}
 
 \end{document}

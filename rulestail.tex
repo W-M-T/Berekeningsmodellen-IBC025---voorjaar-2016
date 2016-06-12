@@ -11,18 +11,4 @@ afleidingsboom kunnen maken wanneer $\StmTail$ wordt uitgevoerd op het moment
 dat het element bovenop de stack de lege string is.
 
 Dit geeft de volgende regel:
-
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip}{(\push{s}{\stk'}, \str)}
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmTail:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rtailns}
-	\qquad
-	\text{met $ \pop{\stk} = (c~s,\stk') $.}
-\end{prooftree}
-$$
+\thertailns%

@@ -12,20 +12,4 @@ De string bovenop de stack wordt toegevoegd aan de string hieronder. Het
 resultaat wordt op de stack gezet.
 
 Dit geeft de volgende regel:
-
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip}{(\push{s_1~s_2}{\stk''}, \str)}
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmCat:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rcatns}
-	\qquad
-	\text{met\enspace
-	\parbox{36mm}{$\pop{\stk} = (s_2,\stk') $,\\$ \pop{\stk'} = (s_1,\stk'')$.}}
-\end{prooftree}
-$$
-
+\thercatns

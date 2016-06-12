@@ -10,24 +10,9 @@ We houden gedurende het hele programma een stack van strings, genaamd $\Output$
 bij waar het programma zijn output naar wegschrijft.
 
 Dit geeft de volgende regel:
-
-$$
-\prooftree
-        \trans
-        {\pgm}{\ip}{(\stk',\str)}
-        	{\ip'}{\op}{\st}
-	\justifies
-        \trans
-        {\StmOutput:\pgm}{\ip}{(\stk,\str)}
-            {\ip'}{\push{s}{\op}}{\st}
-	\using{\routputns}
-	\qquad
-	\text{met $\pop{\stk} = (s,\stk') $,}
-\endprooftree
-$$
+\theroutputns%
 
 waarbij $\op$ in de bovenste regel de gehele outputstack weergeeft. Merk op
 dat eenzelfde regel waar $s$ niet voor op de stack wordt gezet maar achter,
 even geldig is. Geen van beide opties is beter dan de ander omdat we geen
 aannames doen over hoe de $\Output$-stack wordt verwerkt.
-

@@ -8,19 +8,5 @@
 \end{quote}
 
 De regel voor dit statement spreekt voor zich. In het geval dat $\stk$ leeg is,
-is $\pop\stk$ niet gedefinieerd en kunnen we de regel dus niet toepassen. 
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip}{(\push{\str~\var}{\stk'}, \str)}
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmGet:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rgetns}
-	\qquad
-	\text{met $\pop{\stk}= (\var,\stk')$.}
-\end{prooftree}
-$$
-
+is $\pop\stk$ niet gedefinieerd en kunnen we de regel dus niet toepassen.
+\thergetns%

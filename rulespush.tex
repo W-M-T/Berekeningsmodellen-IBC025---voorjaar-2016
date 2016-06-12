@@ -17,19 +17,7 @@ zoals het commentaar op de specificatie~\cite{safalra} aangeeft, niet
 gedefinieerd wat er met ongeldige escape sequences gebeurt.
 
 Dit geeft de volgende regel:
-
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip}{(\push{s}{\stk}), \str)}
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmPush~s:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rpushns}
-\end{prooftree}
-$$
+\therpushns%
 
 De definitie van $\unescapeop$ is als volgt:
 
@@ -54,4 +42,3 @@ het commentaar op de specificatie en met de Perl interpreter: %todo referentie
 	should not rely on this behaviour and should always ensure valid escape
 	sequences are used.
 \end{quote}
- 

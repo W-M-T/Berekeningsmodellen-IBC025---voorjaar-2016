@@ -15,26 +15,13 @@ wordt hier een \verb$\$ voor geplaatst. Hiervoor gebruiken we de hulpfunctie
 $\escapeop$.
 
 Dit geeft de volgende regel:
-$$
-\begin{prooftree}
-	\trans
-		{\pgm}{\ip}{(\push{\texttt{"}\escape{s}\texttt{"}}{\stk'}, \str) }
-		{\ip'}{\op}{\st}
-	\justifies
-	\trans
-		{\StmQuotify:\pgm}{\ip}{(\stk,\str)}
-		{\ip'}{\op}{\st}
-	\using{\rquotifyns}
-	\qquad
-	\text{met $\pop{\stk} = (s, stk')$.}
-\end{prooftree}
-$$
+\therquotifyns%
 
 $$
 	\escape{c~s} =
 		\begin{cases}
 			\texttt{\textbackslash}~c~\escape{s} & \text{als
 				$c\in\{\texttt{"},\texttt{\textbackslash},\text{het LF-karakter}\}$} \\
-			c~\escape{s}                & \text{anderszins}
+			c~\escape{s} & \text{anderszins}
 		\end{cases}
 $$
