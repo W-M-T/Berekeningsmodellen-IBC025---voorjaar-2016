@@ -1,14 +1,15 @@
-\newgeometry{margin=15mm,bottom=22mm}
+% vim: set spelllang=nl:
+\section{Afleidingsbomen}
+\label{sec:app:trees}
+
+\def\makecaption#1#2{%
+	\thispagestyle{empty}%
+	\null\vfill\captionof{figure}{#1\label{#2}}
+}
+
 \begin{landscape}
-	\section{Afleidingsbomen}
-	\label{sec:app:trees}
-	\scriptsize
-	\scalebox{0.5}{
-		$$
-		\begin{prooftree}
-			\input{tree-gen-lambda}
-		\end{prooftree}
-		$$}
-	
-	
+	\includepdf[landscape,pagecommand={\makecaption{Afleidingsboom voor het buitenste programma voor strings met lengte $0$}{fig:tree:lambda}}]{tree-gen-lambda.pdf}
+	\includepdf[landscape,pagecommand={\makecaption{Afleidingsboom voor het buitenste programma voor strings met lengte $n\ge1$}{fig:tree:bootstrap}}]{tree-gen-bootstrap.pdf}
+	\includepdf[landscape,pagecommand={\makecaption{Afleidingsboom voor het binnenste programma voor strings met lengte $1$}{fig:tree:bootstrap-base}}]{tree-gen-bootstrap-base.pdf}
+	\includepdf[landscape,pagecommand={\makecaption{Afleidingsboom voor het binnenste programma voor strings met lengte $n>1$}{fig:tree:bootstrap-step}}]{tree-gen-bootstrap-step.pdf}
 \end{landscape}
