@@ -15,6 +15,7 @@ programma geschreven voor het omdraaien van een string. Dit programma ziet er
 als volgt uit:
 
 \begin{smurf}
+\label{pgm:reverse}
 \footnotesize
 i "input" p
 "input" g
@@ -37,116 +38,5 @@ Het bovenstaande programma is correcte Smurfsyntax en hierdoor niet erg
 leesbaar. We hebben daarom getracht het programma iets leesbaarder te maken: 
 
 \input{reverse2}
-
 \input{explanation}
-
-\subsection{bewijs} 
-Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait,
-oftewel: er is een afleidingsboom voor
-$$
-\trans
-	{Programma}{[s:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[s^R:\Nil]}{\st}
-$$
-
-voor alle s, waar
-$$(c~s)^R=s^R c$$
-$$\lambda^R=\lambda$$
-
-
-Dit bewijs gaat in twee stappen.
-
-$$
-\trans
-	{Programma}{[c:s:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[s^R:c:\Nil]}{\st}
-$$
-
-
-
-Eerst bewijzen we aan de hand van inductie dat voor het recursieve binnenste programma geldt dat voor de stack met waarde $(s:t:\Nil)$ de output $(t^R: s^R: \Nil)$  zal zijn. 
-
-\bigskip 
-
-Ook wel
-$$
-\trans
-	{Programma}{[cs:g:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[g^R:cs:\Nil]}{\st}
-$$
-
-\begin{proof}[Bewijs]
-\medskip
-	Met inductie naar de lengte van $g$.
-
-	Basisgeval: $g=\lambda$.
-	
-	We moeten laten zien dat 
-	
-	$$
-    \trans
-    	{Programma}{[s:c:\Nil]}{(\Nil,\emptystore)}
-    	{\Nil}{[cs:\Nil]}{\st}
-    $$
-    
-    Dit volgt uit bewijsboom *referentie*
-    \bigskip
-    
-    inductiestap: $g = t $ (t is een variabele)
-    
-    We moeten laten zien dat
-    $$
-    \trans
-	{Programma}{[s:ct:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[t^R:cs:\Nil]}{\st}
-    $$
-
-    Met als inductiehypothese 
-     $$
-    \trans
-	{Programma}{[cs:t:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[t^R:cs:\Nil]}{\st}
-    $$
-    
-    Dit volgt uit bewijsboom * referentie*
-	
-\end{proof}
-
-Vervolgens zullen we laten zien dat voor het buitenste programma geldt dat 
-
-$$
-\trans
-	{Programma}{[s:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[s^R:\Nil]}{\st}
-$$
-
-Hierbij zullen we laten zien dat dit geldt voor zowel een lege input als een niet-lege input. 
-Hierbij mogen we natuurlijk gebruik maken van wat we hierboven bewezen hebben. 
-\medskip
-
-Eerst zullen we laten zien dat het geldt voor een lege input 
-
-We zullen dus moeten laten zien dat:
-$$
-\trans
-	{Programma}{[\Nil:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[\Nil:\Nil]}{\st}
-$$
-
-Dit volgt direct uit bewijsboom *referentie* 
-
-
-Ten tweede zullen we laten zien dat het geldt voor een niet-lege input 
-We zullen dus moeten laten zien dat:
-$$
-\trans
-	{Programma}{[s:\Nil]}{(\Nil,\emptystore)}
-	{\Nil}{[s^t:\Nil]}{\st}
-$$
-
-Dit volgt uit de bewijsbomen *referentie* (3*) 
-
-
-
-
-
+\input{analyse-proof}

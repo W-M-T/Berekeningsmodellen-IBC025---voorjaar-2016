@@ -1,0 +1,122 @@
+% vim: spelllang=nl:
+\subsection{Bewijs}
+\label{sec:analyse:proof}
+
+We zullen het buitenste programma als beschreven op~\pageref{pgm:reverse} met
+$P_1$ aanduiden, en het recursieve binnenste programma met $P_2$.
+
+Nu laten we zien dat deze code daadwerkelijk alle mogelijke strings omdraait,
+oftewel: er is een afleidingsboom voor
+$$
+\trans
+	{P_1}{[s:\Nil]}{(\Nil,\emptystore)}
+	{\Nil}{[s^R:\Nil]}{\emptystore}
+$$
+
+voor alle $s\in\String$, met
+\begin{align*}
+	\lambda^R &= \lambda, \\
+	(c~s)^R   &= s^R c.
+\end{align*}
+
+Het bewijs gaat in twee stappen. Eerst bewijzen we dat $P_2$ de eerste string
+op de stack achter de omgedraaide versie van de tweede string op de stack
+plaatst, en dat output. Dit wordt bewezen in \autoref{thm:p2}. Hiermee kunnen
+we van $P_1$ bewijzen dat het de eerste string op de stack omgedraaid output.
+Dit doen we in \autoref{thm:p1}.
+
+\begin{thm}
+	{
+		Voor alle $s,t\in\String$ met $t\ne\lambda$ hebben we een afleidingsboom
+		voor
+		\normalfont
+		\belowdisplayskip=-1em
+		$$
+		\trans
+			{P_2}{[s:t:\Nil]}{(\Nil,\emptystore)}
+			{\Nil}{[t^R~s:\Nil]}{\emptystore}.
+		$$
+	}
+	\label{thm:p2}
+	\begin{proof}[Bewijs]
+		Met inductie naar de lengte van $t$.
+
+		Inductiebasis: stel $t=c$, met $c$ een willekeurig karakter. In dit geval
+		krijgen we de boom in \autoref{fig:tree:bootstrap-base}. Hier is $c$ geen
+		variabele maar het werkelijke karakter \lit{c}. We kunnen \emph{CleanSmurf}
+		namelijk helaas nog niet vertellen dat een bepaalde variabele lengte $1$
+		heeft. Uit de afleidingsboom blijkt dat $c$ niet gebruikt wordt als naam in
+		de variable store, waardoor we ons geen zorgen hoeven te maken over
+		situaties waar $c$ gelijk is aan \'e\'en van de variabelenamen die we
+		gebruiken. Uit de boom in \autoref{fig:tree:bootstrap-base} volgt dus dat
+		bovenstaande stelling geldt voor $t$ van lengte $1$.
+
+		\medskip
+		Inductiestap: we nemen aan dat we een afleidingsboom hebben voor
+		\begin{equation}\tag{IH}\label{eq:p2:ih}
+			\trans
+				{P_2}{[s:t:\Nil]}{(\Nil,\emptystore)}
+				{\Nil}{[t^R:s:\Nil]}{\emptystore}
+		\end{equation}
+
+		Vervolgens laten we zien dat we voor elke $c\in\Char$ ook een
+		afleidingsboom hebben voor
+		$$
+		\trans
+			{P_2}{[s:c~t:\Nil]}{(\Nil,\emptystore)}
+			{\Nil}{[t^R~c~s:\Nil]}{\emptystore}.
+		$$
+
+		Ook hiervoor kunnen we \emph{CleanSmurf} gebruiken. Geven
+		we~\eqref{eq:p2:ih} mee als aanname, dan krijgen we de boom
+		in~\autoref{fig:tree:bootstrap-step}. Net zoals bij de inductiebasis moeten
+		we $c$ als letterlijk \lit{c} meegeven. Eenzelfde inspectie van de
+		boom wijst uit dat dit geen problemen oplevert met andere waarden voor $c$.
+
+		\medskip
+		Uit het principe van inductie naar de structuur van de string $t$ volgt nu
+		voor alle $s,t\in\String$ met $t\ne\lambda$ dat we een afleidingsboom
+		hebben voor
+
+		$$
+		\trans
+			{P_2}{[s:t:\Nil]}{(\Nil,\emptystore)}
+			{\Nil}{[t^R~s:\Nil]}{\emptystore}.
+		$$
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	{
+		Voor alle $s\in\String$ hebben we een afleidingsboom voor
+		\normalfont
+		\belowdisplayskip=-1em
+		$$
+		\trans
+			{P_1}{[s:\Nil]}{(\Nil,\emptystore)}
+			{\Nil}{[s^R:\Nil]}{\emptystore}.
+		$$
+	}
+	\label{thm:p1}
+	\begin{proof}[Bewijs]
+		We maken een gevalsonderscheiding over de structuur van $s$.
+
+		\begin{enumerate}[label={Geval \arabic*.},itemindent=1.5\parindent]
+			\item Stel $s=\lambda$. In dit geval hebben we geen enkele variabele. We
+				kunnen dus simpelweg een boom maken. Dit geeft de boom in
+				\autoref{fig:tree:lambda}, waaruit blijkt dat de stelling inderdaad
+				geldt voor $s=\lambda$:
+				$$
+				\trans
+					{P_1}{[\lambda:\Nil]}{(\Nil,\emptystore)}
+					{\Nil}{[\lambda:\Nil]}{\emptystore}.
+				$$
+
+			\item Stel $s=c~t$. In dit geval gaat $P_1$ het recursieve binnenste
+				programma gebruiken. We maken dus een boom die het resultaat van
+				\autoref{thm:p2} als aanname mag gebruiken. Dit geeft de afleidingsboom
+				in \autoref{fig:tree:bootstrap}, waaruit blijkt dat de bovenstaande
+				stelling geldt voor alle $s\ne\lambda$.
+		\end{enumerate}
+	\end{proof}
+\end{thm}

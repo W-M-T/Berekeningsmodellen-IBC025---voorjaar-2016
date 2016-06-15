@@ -36,6 +36,7 @@
 \addto\extrasdutch{%
 	\renewcommand{\sectionautorefname}{Sectie}
 	\renewcommand{\subsectionautorefname}{Paragraaf}
+	\renewcommand{\figureautorefname}{Figuur}
 }
 
 % Eigen commando's en environments, niet specifiek voor Smurf
@@ -47,6 +48,8 @@
 	prefoothook=\vspace*{\dimexpr-\baselineskip+\topsep\relax}\endgraf\nobreak\noindent\hrulefill%
 ]{lined}
 \declaretheorem[style=lined]{exmp}
+
+\newtheorem{thm}{Stelling}
 
 \begin{document}
 
