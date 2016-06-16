@@ -13,7 +13,7 @@ voorstel.pdf: voorstel.tex
 	$(TEX) $(TEXOPTS) $(basename $@)
 
 $(TREEPDF): %.pdf: %.tex tree.tex
-	lualatex "\def\filename{$<}\input{tree}"
+	pdflatex "\def\filename{$<}\input{tree}"
 	mv tree.pdf $@
 
 werkstuk.pdf: %.pdf: %.tex $(DEP) $(TREEPDF)
