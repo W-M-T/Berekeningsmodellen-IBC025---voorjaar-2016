@@ -18,7 +18,7 @@ zien. De bewijshulp is te vinden in de \texttt{prover} branch van
 \emph{CleanSmurf}~\cite{cleansmurf}.
 
 De oplossing hiervoor is complex. Waar hierboven de stack werd gemodelleerd met
-een lijst van Strings, zal dit nu niet meer voldoende zijn: we moeten
+een lijst van strings, zal dit nu niet meer voldoende zijn: we moeten
 onderscheid maken tussen \emph{literals} en \emph{bewijsvariabelen}. Voor de
 duidelijkheid maken we vanaf nu onderscheid tussen variabelen (elementen op de
 stack of in de variable store) en bewijsvariabelen (variabelen waar de
@@ -30,7 +30,8 @@ bewijsvariabelen ook in een Smurfprogramma terechtkomen, omdat Smurf geen
 duidelijk onderscheid kent tussen variabelen en Smurfprogramma's (middels
 $\StmExec$ kan een variabele uitgevoerd worden). Dit laatste moet de bewijshulp
 ten minste deels ondersteunen: variabelen komen al snel in programma's terecht
-op het moment dat iteratie gewenst is.
+op het moment dat iteratie gewenst is. Zolang de variabele in een
+$\StmPush$-commando wordt gebruikt kan de bewijshulp er mee omgaan.
 
 Om variabelen te modelleren definiëren we een nieuw type, \CI{Expr}:
 
@@ -55,7 +56,6 @@ dan zal dit worden opgeslagen als \CI{EHead (Var "s")}, terwijl dit \CI{Lit
 "x"} zou moeten zijn als \CI{s} leeg is. Dit zijn dingen waar uiteindelijk wel
 op te controleren valt, maar nog niet volledig geïmplementeerd zijn.
 
-\medskip
 Helaas werkt de oude functie om een boom te maken, \CI{tree}, niet meer na deze
 veranderingen: op een gegeven moment zal \CI{step} moeten weten wat de inhoud
 van een bewijsvariabele is.

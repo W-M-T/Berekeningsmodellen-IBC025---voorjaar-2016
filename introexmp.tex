@@ -4,28 +4,6 @@
 Nu we alle commando's hebben gezien bekijken we nog een paar voorbeelden die
 aangeven hoe conditionele executie kan worden behaald in Smurf.
 
-% Dit is waarschijnlijk te veel anders.
-%
-%\begin{exmp}
-%	Het volgende programma implementeert een simpel bestelsysteem:
-%	\begin{smurf}
-%		"ijs" "0" p \\
-%		"pizza" "1" p \\
-%		"Wil je ijs (0) of pizza (1)?\textbackslash{}n" o \\
-%		"Ik ga " i g + " voor je maken!" + o
-%	\end{smurf}
-%	We zetten de variabelen \verb$0$ en \verb$1$ tot \verb$ijs$ en \verb$pizza$.
-%	Vervolgens vragen we de gebruiker een keuze te maken. Met \smurfinline{ig}
-%	kan de gebruiker in feite kiezen welke variabele wordt opgehaald.
-%
-%	De uitvoer kan er dus uitzien als:
-%	\begin{verbatim}
-%		Wil je ijs (0) of pizza (1)?
-%		1
-%		Ik ga pizza voor je maken!
-%	\end{verbatim}
-%\end{exmp}
-
 \begin{exmp}
 	\label{exmp:headortail}
 	Dit programma laat de gebruiker kiezen welke functie er wordt uitgevoerd:
@@ -35,29 +13,27 @@ aangeven hoe conditionele executie kan worden behaald in Smurf.
 		"Wil je de head of de tail?\textbackslash{}n"o \\
 		ig +"o"+ x
 	\end{smurf}
-	Allereerst zetten we de variabelen \verb$head$ en \verb$tail$ tot \verb$h$ en
-	\verb$t$, de commando's voor de head en tail van een string. We vragen de
+	Allereerst zetten we de variabelen \lit{head} en \lit{tail} tot \lit{h} en
+	\lit{t}, de commando's voor de head en tail van een string. We vragen de
 	gebruiker om een string en zetten die in quotes zodat ze gebruikt kan worden
-	in een Smurfprogramma. We vragen de gebruiker om `head' of `tail' in te
-	voeren en halen de bijbehorende functie op. Op dit moment kan de stack eruit
-	zien als \verb$h$, \verb$"mijn string"$ (bovenste element eerst). Met
-	\smurfinline{+"o"+} bouwen we hiervan het programma \smurfinline{"mijn
-	string"ho}, wat we met \smurfinline{x} uitvoeren. De uitvoer van het
-	programma is dus `m', in dit geval.
+	in een Smurfprogramma. We vragen de gebruiker om \lit{head} of \lit{tail} in
+	te voeren en halen de bijbehorende functie op. Op dit moment kan de stack er
+	bijvoorbeeld uit zien als \lit{h}, \lit{"mijn string"} (bovenste element
+	eerst). Met \smurfinline{+"o"+} bouwen we hiervan het programma
+	\smurfinline{"mijn string"ho}, wat we met \smurfinline{x} uitvoeren. De
+	uitvoer van het programma is dus \lit{m}, in dit geval.
 
-	Wat gebeurt er als de gebruiker iets anders dan `head' of `tail' invoert? In
-	dit geval bestaat er geen variabele met de naam die de gebruiker had
-	ingevoerd. Het commando \smurfinline{g} levert dan de lege string op. Dit
+	Wat gebeurt er als de gebruiker iets anders dan \lit{head} of \lit{tail}
+	invoert? In dit geval bestaat er geen variabele met de naam die de gebruiker
+	had ingevoerd. Het commando \smurfinline{g} levert dan de lege string op. Dit
 	betekent dat we het programma \smurfinline{"mijn string"o} bouwen. Als de
-	gebruiker dus geen correcte keuze maakt, dan zal de hele string worden
+	gebruiker geen correcte keuze maakt, dan zal de hele string dus worden
 	teruggegeven.
 \end{exmp}
 
 \begin{exmp}
 	Het volgende programma is een Smurf interpreter:
-	\begin{smurf}
-		ix
-	\end{smurf}
+	\begin{smurf}ix\end{smurf}
 	We halen input op van de gebruiker en voeren dit uit als Smurfprogramma.
 \end{exmp}
 
@@ -76,14 +52,14 @@ voorgedaan:
 		x
 	\end{smurf}
 	Met de eerste twee regels halen we input op en sturen die naar de output. Ook
-	wordt de input in een variabele \verb$s$ opgeslagen.
-	De derde regel zet een Smurfprogramma in \verb$c$.
-	In de vierde regel plakken we dat gequotifiede programma, de gequotifiede
-	input en het programma aan elkaar vast. Het resultaat voeren we uit.
+	wordt de input in een variabele \lit{s} opgeslagen.  De derde regel zet een
+	Smurfprogramma in \lit{c}.  In de vierde regel plakken we dat gequotifiede
+	programma, de gequotifiede input en het programma aan elkaar vast. Het
+	resultaat voeren we uit.
 
 	Op dit moment voeren we dus het programma uit dat bestaat uit twee keer een
-	string pushen en vervolgens het programma uit \verb$c$. Dan bekijken we nu
-	dit programma, wat we in de derde regel hierboven hebben gedefinieerd, in een
+	string pushen en vervolgens het programma uit \lit{c}. Dan bekijken we nu dit
+	programma, wat we in de derde regel hierboven hebben gedefinieerd, in een
 	iets makkelijkere opmaak:
 	\begin{smurf}
 		t "s"p "s"g "\textbackslash{}n"+o \\
@@ -93,13 +69,12 @@ voorgedaan:
 		""""p \\
 		"s"ggx
 	\end{smurf}
-	Met de eerste regel slaan we de tail van de oude input op in \verb$s$. We
+	Met de eerste regel slaan we de tail van de oude input op in \lit{s}. We
 	sturen deze tail ook naar de output. Hierna staat alleen nog de eerste string
 	op de stack, d.w.z. het programma waar we naar kijken. Dit slaan we op in
-	\verb$c$.
-	De derde regel hier is hetzelfde als de vierde regel hierboven: we maken een
-	nieuw programma, wat er precies hetzelfde uitziet als dit, behalve dat we van
-	de tweede string één karakter hebben weggehaald.
+	\lit{c}. De derde regel hier is hetzelfde als de vierde regel hierboven: we
+	maken een nieuw programma, wat er precies hetzelfde uitziet als dit, behalve
+	dat we van de tweede string één karakter hebben weggehaald.
 
 	Het is verleidelijk op dit moment weer \smurfinline{x} te gebruiken. We
 	moeten echter eerst nog controleren of we niet met de lege string te maken
@@ -107,7 +82,7 @@ voorgedaan:
 	is. We maken dus van het nieuwe programma wederom een nieuw programma, wat
 	bestaat uit het pushen van het oude programma en vervolgens \smurfinline{x}
 	aanroepen. Dit programma slaan we op in de variabele met als naam de waarde
-	van \verb$s$ (de input).
+	van \lit{s} (de input).
 
 	Mocht deze input de lege string zijn, dan overschrijft de vijfde regel dit
 	programma met een leeg programma. Vervolgens halen we in de zesde regel het
@@ -116,7 +91,7 @@ voorgedaan:
 	\smurfinline{t} uitvoeren op de lege string.
 
 	\medskip
-	De uitvoer van dit programma met de input `smurf' is dus:
+	De uitvoer van dit programma met de input \lit{smurf} is dus:
 
 	\begin{verbatim}
 		smurf

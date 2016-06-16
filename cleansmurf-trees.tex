@@ -6,11 +6,11 @@ eigenschappen van afleidingsbomen voor Smurf:
 
 \begin{itemize}
 	\item Alle semantiekregels hebben ten hoogste één premisse, waardoor we een
-		boom als lijst van transities kunnen representeren.
+		afleidingsboom als lijst van transities kunnen representeren.
 	\item Ieder commando heeft precies één regel. Hierdoor is aan het eerste
 		statement van een programma te herkennen welke regel wordt toegepast. Dit
 		hoeven we dus niet in de types \CI{Transition} en \CI{DerivationTree} op te
-		slaan.
+		slaan om het later wel in de output te kunnen tonen.
 	\item Doordat condities van de semantiekregels enkel afhangen van de
 		linkerkant van de conclusie (het programma, de input en de toestand), en
 		deze informatie beschikbaar is op het moment dat de boom gemaakt wordt,
@@ -36,5 +36,5 @@ het geval, dan zetten we de $\lambda$-regel zelf in de boom als \CI{([],
 io.input, st) --> (io.input, [], st)}.
 
 Is dit niet het geval, dan maken we recursief een boom voor de premisse
-(\CI{tree pgm st io iof}). Lukt dit niet, dan kunnen we geen boom maken.
-Anders, dan voegen we de boom en de transitie gevonden met \CI{step} samen.
+(\CI{tree pgm st io iof}). Lukt dit niet, dan kunnen we geen boom maken. Lukt
+het wel, dan voegen we de boom en de transitie gevonden met \CI{step} samen.

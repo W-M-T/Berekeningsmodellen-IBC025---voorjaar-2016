@@ -1,9 +1,11 @@
 % vim: set spelllang=nl:
 \subsection{Transities}
 \label{sec:def:trans}
-We hebben gekozen om de semantiek van Smurf in natuurlijke semantiek te definiëren. In principe hadden we er ook voor kunnen kiezen om te gaan voor structurele operationele semantiek, dit zullen we dan ook nog even kort toelichten in \autoref{sec:sos} . Echter zal de verdere uitwerking dus in natuurlijke semantiek zijn. 
-
-\medskip
+We hebben ervoor gekozen de semantiek van Smurf in natuurlijke semantiek te
+definiëren. In principe hadden we er ook voor kunnen kiezen om structurele
+operationele semantiek te gebruiken. In het geval van Smurf komt dit ongeveer
+op hetzelfde neer. Hoe regels voor Smurf gedefinieerd zouden kunnen worden in
+structurele operationele semantiek wordt toegelicht in \autoref{sec:sos}.
 
 Bij het definiëren van de natuurlijke semantiek van Smurf zullen we de
 verzameling van transities als een relatie $\to$ tussen
@@ -17,7 +19,7 @@ en lezen we als
 	de geconsumeerde input.''
 \end{quote}
 
-We hebben het hele programma $\Pgm$ nodig voor de pijl, omdat één commando
+We hebben het hele programma $\pgm$ nodig voor de pijl, omdat één commando
 ($\StmExec$) eventuele verdere statements `weggooit'. %todo ander woord
 Verder gebruiken we $\Input$ voor $\StmInput$ en hebben we natuurlijk de
 $\State$ nodig voor ieder statement: ieder statement verandert de stack, en

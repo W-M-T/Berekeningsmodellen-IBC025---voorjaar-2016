@@ -5,8 +5,8 @@ We willen ook laten zien hoe de definities van Smurf eruit zien als je de
 structurele operationele semantiek gebruikt. In principe maakt het voor de
 analyse van Smurf niet uit of je natuurlijke semantiek gebruikt of structurele
 operationele semantiek. Wij hadden een voorkeur om natuurlijke semantiek te
-gebruiken omdat we hier meer bekend mee zijn. Echter willen we ook nog graag
-laten zien hoe het eruit zou zien als je structurele operationele semantiek zou
+gebruiken omdat we hier meer bekend mee zijn. We wilden echter ook graag laten
+zien hoe het eruit zou zien als je structurele operationele semantiek zou
 gebruiken.
 
 Bij het definiëren van de structurele operationele semantiek van Smurf zullen
@@ -15,16 +15,15 @@ $\Pgm\times\Input\times\Output\times\State$ en $\Gamma$ beschouwen, waarbij
 $\Gamma$ óf  $\Pgm\times\Input\times\Output\times\State$ óf
 $\Input\times\Output\times\State$ is. Dit schrijven we als
 
-$$\sostransgamma{\stm:\pgm}{\ip}{\op}{\st}{\gamma}
-	\qquad \text{met\enspace\parbox{36mm}{
-		$\gamma = (\pgm',\ip',\op',\st')$ of \\
-		$\gamma = (\ip', \op',\st' )$}}$$
+$$
+	\sostransgamma{\stm:\pgm}{\ip}{\op}{\st}{\gamma}
+	\qquad\text{met $\gamma \in \{(\pgm',\ip',\op',\st'), (\ip', \op',\st')\}$}.
+$$
 
-De reden dat we hier spreken over $\pgm'$ is omdat de $\StmExec$-regel het programma
-dat je gaat uitvoeren verandert. In de meeste gevallen zal $\pgm$ = $\pgm'$
-gelden maar dat hoeft dus niet.
+De reden dat rechts van de pijl $\pgm'$ gebruikt wordt (en niet gewoon $\pgm$)
+is dat in het geval van $\StmExec$ de rest van het programma niet zal worden
+uitgevoerd. In de meeste gevallen zal $\pgm=\pgm'$ echter wel gelden.
 
-\medskip
 Het is mogelijk om in de structurele operationele semantiek, zoals bij de
 natuurlijke semantiek, compositie in te bouwen in iedere regel en een
 $\lambda$-regel toe te voegen. In dit geval kiezen we er echter voor om gebruik
@@ -47,7 +46,6 @@ $$
 \end{prooftree}
 $$
 
-\bigskip
 We geven twee voorbeelden van regels in de structurele operationele semantiek.
 Het doel is hier niet om een precieze beschrijving van de semantiek te geven
 zoals we dat in \autoref{sec:rules} voor natuurlijke semantiek hebben gedaan,
@@ -57,15 +55,11 @@ lijken.
 De regel voor $\StmTail$ zou in de structurele operationele semantiek als volgt
 zijn:
 $$
-\begin{prooftree}
-	\axjustifies
 	\sostranseind
 		{\StmTail}{\ip}{\op}{(\stk,\str)}
 		{\ip}{\op}{(\push{s}{\stk'}, \str)}
-	\using{\rtailsos}
-	\qquad
-	\text{met $\pop{\stk} = (c~s,\stk')$.}
-\end{prooftree}
+	\enspace\rtailsos
+	\quad\text{met $\pop{\stk} = (c~s,\stk')$.}
 $$
 
 Afgezien van de compositie, die bij de natuurlijke semantiek in iedere regel is
@@ -74,17 +68,13 @@ ingebouwd, verschilt dit niet erg van $\rtailns$ in \autoref{sec:rules:tail}.
 Dit geldt voor bijna alle andere commando's net zo. Een apart geval is
 $\StmExec$, omdat we hier de compositieregel niet kunnen gebruiken. Wat na het
 $\StmExec$-commando volgt wordt immers niet uitgevoerd. We definiëren deze
-regels als volgt:
+regel als volgt:
 $$
-\begin{prooftree}
-\axjustifies
 	\sostrans
 		{\StmExec:\pgm}{\ip}{\op}{(\stk,\str)}
 		{\pgm'}{\ip'}{\op'}{(\stk',\str')}
-	\using{\rexecsos}
-	\qquad
-		\text{met $\pop{\stk} = ( \pgm', \stk'')$.}
-\end{prooftree}
+	\enspace\rexecsos
+	\quad\text{met $\pop{\stk} = ( \pgm', \stk'')$.}
 $$
 Hier wordt gebruik gemaakt van een ander soort transitie, waarbij een programma
 aan de rechterkant voorkomt. Hierdoor is $\rexecsos$ niet te gebruiken als

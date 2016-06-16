@@ -34,7 +34,7 @@
 % Settings, fixes
 \setlist{itemsep=0pt}
 \addto\extrasdutch{%
-	\renewcommand{\sectionautorefname}{Sectie}
+	\renewcommand{\sectionautorefname}{Hoofdstuk}
 	\renewcommand{\subsectionautorefname}{Paragraaf}
 	\renewcommand{\figureautorefname}{Figuur}
 }
@@ -43,9 +43,8 @@
 \declaretheoremstyle[
 	title=Voorbeeld,
 	parent=section,
-	spacebelow=1em,
-	preheadhook=\nobreak\noindent\hrulefill,
-	prefoothook=\vspace*{\dimexpr-\baselineskip+\topsep\relax}\endgraf\nobreak\noindent\hrulefill%
+	preheadhook=\framed,
+	prefoothook=\endframed,
 ]{lined}
 \declaretheorem[style=lined]{exmp}
 

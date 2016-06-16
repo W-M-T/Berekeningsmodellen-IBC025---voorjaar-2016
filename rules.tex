@@ -5,14 +5,14 @@
 We zullen nu ieder syntaxelement nader specificeren. Ook zullen regels voor de
 natuurlijke semantiek van Smurf worden geïntroduceerd. Bij elk van deze regels
 geldt dat als elementen van de stack worden gebruikt in die regel, de stack
-niet leeg mag zijn voor het uitvoeren van de regel. %todo waarom deze keuze?
+niet leeg mag zijn voor het uitvoeren van de regel.
 
 De documentatie \cite{safalra} beschrijft niet wat er gebeurt wanneer er niet
 genoeg argumenten op de stack staan om een bepaalde instructie uit te voeren.
-In de \emph{Perl}-interpreter van de taal is ervoor gekozen om een dergelijk
-programma abrupt te laten termineren met een foutmelding.  Wij kiezen er echter
-voor om het in zulk soort gevallen onmogelijk te maken een afleidingsboom te
-maken (in tegenstelling tot bijvoorbeeld een errorstatus aan de rechterkant van
+In de Perl-interpreter van de taal is ervoor gekozen om een dergelijk programma
+abrupt te laten termineren met een foutmelding.  Wij kiezen er echter voor om
+het in zulk soort gevallen onmogelijk te maken een afleidingsboom te maken (in
+tegenstelling tot bijvoorbeeld een errorstatus aan de rechterkant van
 transities toe te voegen), omdat dit het redeneren over Smurfprogramma's
 makkelijker zal maken.
 

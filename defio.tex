@@ -2,14 +2,16 @@
 \subsection{Input en output}
 \label{sec:def:io}
 
-Allereerst definiëren we het type $\Stack{a}$, omdat we veel met stacks
-doen in onze semantiekregels. Een $\Stack{a}$ (lees: een stack van elementen
-van type $a$) is een simpel datatype met de volgende syntax:
+Allereerst definiëren we het type $\Stack{a}$. De stack is onmisbaar voor
+nagenoeg elk Smurfprogramma en zullen we dus ook veel gebruiken in onze
+semantiekregels. Een $\Stack{a}$ (lees: een stack van elementen van type $a$)
+is een simpel datatype met de volgende syntax:
 
 \def\inbrackets#1{$\mathrm{[}#1\mathrm{]}$}
 \def\bracka{\inbrackets{a}}
+\def\StackA{{\normalfont\textbf{Stack}} \bracka}
 \begin{grammar}
-	<Stack \bracka> ::= [<a>:<Stack \bracka>] | \Nil
+	<\StackA> ::= [<a>:<\StackA>] | \Nil
 \end{grammar}
 
 Op een stack zijn twee instructies gedefinieerd:
@@ -21,11 +23,11 @@ Op een stack zijn twee instructies gedefinieerd:
 \end{gather*}
 
 In de documentatie \cite{safalra} wordt niet beschreven wat er gebeurt wanneer
-een $\popop$ wordt uitgevoerd op een lege stack. In de
-\emph{Perl}-interpreter van de taal wordt ervoor gekozen om het programma
-abrupt te termineren met een error. Wij hebben ervoor gekozen om $\popop$ als
-een partiële functie te zien waar $\pop\Nil$ ongedefinieerd blijft zodat er
-geen afleidingsbomen bestaan voor programma's waar dit gebeurt.
+een $\popop$ wordt uitgevoerd op een lege stack. In de Perl-interpreter van de
+taal wordt ervoor gekozen om het programma abrupt te termineren met een error.
+Wij hebben ervoor gekozen om $\popop$ als een partiële functie te zien waar
+$\pop\Nil$ ongedefinieerd blijft zodat er geen afleidingsbomen bestaan voor
+programma's waar dit gebeurt.
 
 \medskip
 We zullen de input en output beide als $\Stack{\String}$ modelleren. In feite
